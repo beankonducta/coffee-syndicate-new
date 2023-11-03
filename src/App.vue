@@ -4,7 +4,8 @@
       Let's get that machine working again.
     </h1>
     <h1 id="y"> {{  position[1] }}</h1>
-    <div id="bottom-curtain"></div>
+    <div v-if="position[1] <= 8500" id="bottom-curtain"></div>
+    <div v-if="position[1] >= 8500" id="center-curtain"></div>
     <img
       id="header"
       src="./assets/Coffee Syndicate Logo Full.svg"
@@ -50,7 +51,26 @@
       id="screen"
       src="./assets/icon-06.png"
       :style="{ top: screenTop, right: screenRight }"
-      alt="Scren"
+      alt="Screen"
+    />
+    <img
+      id="tube"
+      src="./assets/icon-08.png"
+      :style="{ top: tubeTop, right: tubeRight }"
+      alt="Tube"
+    />
+    <img
+      id="drip"
+      src="./assets/icon-09.png"
+      :style="{ top: dripTop, right: dripRight }"
+      alt="Drip"
+    />
+    <img
+      id="spro"
+      v-if="position[1] >= 8500"
+      src="./assets/icon-10.png"
+      :style="{ top: sproTop, right: sproRight }"
+      alt="Spro"
     />
   </div>
 </template>
@@ -115,10 +135,10 @@ export default {
     },
     tamperTop() {
       let pos = -3700 + this.position[1];
-      if(this.position[1] >= 3930)
-       pos = 230;
+      if(this.position[1] >= 3900)
+       pos = 200;
       if(this.position[1] >= 5000)
-        pos = 230 + (5000 - this.position[1])
+        pos = 200 + (5000 - this.position[1])
       return pos + "px";
     },
     tamperRight() {
@@ -126,8 +146,8 @@ export default {
     },
     screwTop() {
       let pos = -6300 + this.position[1];
-      if(this.position[1] >= 6520)
-        pos = 220;
+      if(this.position[1] >= 6500)
+        pos = 200;
       return pos + "px";
     },
     screwRight() {
@@ -135,11 +155,34 @@ export default {
     },
     screenTop() {
       let pos = -6450 + this.position[1];
-      if(this.position[1] >= 6670)
-        pos = 220;
+      if(this.position[1] >= 6650)
+        pos = 200;
       return pos + "px";
     },
     screenRight() {
+      return window.innerWidth / 2 - 500 + "px";
+    },
+    tubeTop() {
+      let pos = -6600 + this.position[1];
+      if(this.position[1] >= 6750)
+        pos = 150;
+      return pos + "px";
+    },
+    tubeRight() {
+      return window.innerWidth / 2 - 500 + "px";
+    },
+    dripTop() {
+      let pos = -7600 + this.position[1];
+      return pos + "px";
+    },
+    dripRight() {
+      return window.innerWidth / 2 - 500 + "px";
+    },
+    sproTop() {
+      let pos = (this.position[1] -10000);
+      return pos + "px";
+    },
+    sproRight() {
       return window.innerWidth / 2 - 500 + "px";
     },
   },
@@ -157,16 +200,25 @@ body {
 #app {
   display: flex;
   flex-direction: column;
-  height: 10000px;
+  height: 15000px;
   background: #002b49;
 }
 
 #bottom-curtain {
   position: fixed;
-  height: 38%;
+  height: 40%;
   width: 100%;
   background: #002b49;
-  top: 62%;
+  top: 60%;
+  z-index: 2;
+}
+
+#center-curtain {
+  position: fixed;
+  height: 66%;
+  width: 100%;
+  background: #002b49;
+  top: 0%;
   z-index: 2;
 }
 
@@ -189,6 +241,7 @@ body {
   position: fixed;
   height: 200px;
   top: 15px;
+  z-index: 10;
 }
 
 #pf {
@@ -231,5 +284,23 @@ body {
   position: fixed;
   width: 600px;
   z-index: 3;
+}
+
+#tube {
+  position: fixed;
+  width: 600px;
+  z-index: 3;
+}
+
+#drip {
+  position: fixed;
+  width: 600px;
+  z-index: 1;
+}
+
+#spro {
+  position: fixed;
+  width: 600px;
+  z-index: 1;
 }
 </style>
