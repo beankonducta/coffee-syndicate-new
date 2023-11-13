@@ -148,8 +148,8 @@ p {
 #footer {
   height: 15%;
   padding: 2%;
-  color: #002b49;
-  background: white;
+  color: white;
+  background: #002b49;
   font-family: "Manufaktur", sans-serif;
   text-align: center;
 }
@@ -268,7 +268,6 @@ p {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 25%;
   margin-top: 10%;
 }
 
