@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default function windowScrollPosition(propertyName) {
     return {
       data() {
@@ -22,12 +24,13 @@ export default function windowScrollPosition(propertyName) {
           this._scrollListener()
   
           // When scrolling, update the position
-          window.addEventListener('scroll', this._scrollListener)
+          window.addEventListener('scroll', _.throttle(this._scrollListener, 1000 / 30))
         }
       },
       beforeDestroy() {
         // Detach the listener when the component is gone
         window.removeEventListener('scroll', this._scrollListener)
+        
       }
     }
   }

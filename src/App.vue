@@ -1,19 +1,32 @@
 <template>
   <div id="app">
-    <!-- TODO: MAKE TRANSLATIONS ONE STEP RATHER THAN EACH SCROLL TICK -->
-    <h1 id="y"> {{ position[1] }}</h1>
-    <h1 id="water-x"> {{ bottomWaterRight }}</h1>
     <div id="curtain" :style="{ top: curtainTop }"></div>
+    <h1 id="y">{{ position[1] }}</h1>
     <div id="white" :style="{ top: whiteTop }"></div>
-    <img id="header" src="./assets/CS_Logo.png" alt="Coffee Syndicate Logo" />
+    <div id="circular-wrapper" @click="openContact()" :class="position[1] >= 8800 ? 'show' : 'hide'">
+      <img id="circular-1" src="./assets/circular-01.png">
+      <img id="circular-2" src="./assets/circular-02.png">
+    </div>
+    <img id="header" src="./assets/Coffee Syndicate Logo Full.svg" alt="Coffee Syndicate Logo" />
     <img id="knob" src="./assets/knob.png" alt="knob" :style="{ transform: translateString(0, knobTop, knobRotation) }" />
-    <img id="spout" src="./assets/spout.png" alt="spout" :style="{ transform: translateString(0, spoutTop), msTransform: translateString(0, spoutTop), webkitTransform: translateString(0, spoutTop) }" />
-    <img id="water" src="./assets/water.png" alt="water" :style="{ transform: translateString(0, waterTop), msTransform: translateString(0, waterTop), webkitTransform: translateString(0, waterTop) }" />
+    <img id="spout" src="./assets/spout.png" alt="spout" :style="{ transform: translateString(0, spoutTop) }" />
+    <img id="water" src="./assets/water.png" alt="water" :style="{ transform: translateString(0, waterTop) }" />
     <img id="bottom-water" src="./assets/bottom_water.svg" alt="bottom-water"
-      :style="{ transform: translateString(bottomWaterRight, bottomWaterTop), msTransform: translateString(bottomWaterRight, bottomWaterTop), webkitTransform: translateString(bottomWaterRight, bottomWaterTop) }" />
-    <div id="content" :class="position[1] >= 13500 ? 'fadein' : 'fadeout'" :style="{ top: contentTop }">
-      <h1 id="about-header">COFFEE SYNDICATE OFFERS WORLD CLASS COFFEE EQUIPMENT SERVICE, SALES & CUSTOM SOFTWARE
-        SOLUTIONS</h1>
+      :style="{ transform: translateString(bottomWaterRight, bottomWaterTop) }" />
+    <div id="content" :style="{ top: contentTop }" :class="position[1] >= 8800 ? 'show' : 'hide'">
+      <h1 id="about-header">coffee syndicate offers coffee equipment sales, service and custom software solutions to the
+        salt lake valley and beyond.</h1>
+      <div id="blocks" :style="{transform: translateString(0, blocksBottom)}">
+        <div class="block">
+          <h2>sales</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla minima illum ab officia non quod quas, exercitationem vel iure corrupti nihil sequi blanditiis inventore. Accusamus ex doloribus iste reiciendis eveniet.</p></div>
+        <div class="block">
+          <h2>service</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi doloribus minima cum nemo aliquam sit iste suscipit ex molestias ducimus laudantium delectus deleniti aliquid, nulla neque obcaecati sunt ipsum tenetur!</p></div>
+        <div class="block">
+          <h2>software</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem adipisci qui hic aperiam ad consectetur, praesentium quis corrupti blanditiis sunt magnam tempora nobis, aliquid repudiandae placeat iure laborum accusamus est.</p></div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,114 +38,81 @@ export default {
   mixins: [windowScrollPosition("position")],
   name: "App",
   components: {},
+  mounted() {
+    for (let i = 0; i < 15500; i++)
+      setTimeout(() => {
+        window.scrollTo(0, i);
+      }, i * 0.5);
+  },
   data() {
     return {
-      curtainTop: 0+ "px",
-      spoutTop: 200+ "px",
-      knobTop: 20+ "px",
-      waterTop: window.innerHeight * 1.5+ "px",
-      bottomWaterTop: window.innerHeight * 1.5 + 900+ "px",
+      curtainTop: 0 + "px",
+      spoutTop: 200 + "px",
+      knobTop: 20 + "px",
+      waterTop: window.innerHeight * 1.5 + "px",
+      bottomWaterTop: window.innerHeight * 1.5 + 900 + "px",
       bottomWaterRight: -200 + "%",
-      knobRotation: 0+"deg",
-      whiteTop: -100000+"px",
-      contentTop: 300+"px",
-      contentRight: 0+"px"
+      knobRotation: 0 + "deg",
+      whiteTop: -100000 + "px",
+      contentTop: 300 + "px",
+      contentRight: 0 + "px",
+      blocksBottom: window.innerHeight * 1.5 + 300 + "px"
     };
   },
   methods: {
-    translateString(x = '0px', y ='0px', angle = '0deg') {
-      return `translate(${x}, ${y}) rotate(${angle})`
+    translateString(x = '0px', y = '0px', angle = '0deg') {
+      return `translate3d(${x}, ${y}, 0) rotate(${angle})`;
+    },
+    openContact() {
+      window.open("https://www.coffeesyndicate.com/contact", "_blank");
     }
   },
-  computed: {
-    scrollAmount() {
-      return window.scrollY;
-    },
-    _curtainTop() {
-      if (this.position[1] > 5000)
-        return (-this.position[1] + 5000) / 8 + "px";
-      else
-        return 0 + "px";
-    },
-    _spoutTop() {
-      if (this.position[1] > 5000)
-        return (-this.position[1] + 5000) / 8 + 200 + "px";
-      else
-        return 200 + "px";
-    },
-    _knobTop() {
-      if (this.position[1] > 5000)
-        return (-this.position[1] + 5000) / 8 + 20 + "px"; 
-      else
-        return 20 + "px";
-    },
-    _waterTop() {
-      if (this.position[1] > 5000)
-        return (this.position[1]) / 28 - 900 + "px";
-      else
-        return window.innerHeight * 1.5 + "px";
-    },
-    _bottomWaterTop() {
-      if (this.position[1] > 7000)
-        return (-this.position[1] + 7000) / 6 + (window.innerHeight * 1.5) + "px";
-      else
-        return (window.innerHeight * 1.5) + 900 + "px";
-    },
-   _bottomWaterRight() {
-      if (this.position[1] > 10000)
-        return (this.position[1] - 15000) / 8 + "px";
-      else
-        return -200 + "%";
-    },
-    _knobRotation() {
-      return this.position[1] / 80 + "deg";
-    },
-    _whiteTop() {
-      return (15000 - this.position[1]) / 6 + "px";
-    },
-    _contentTop() {
-      return (15000 - this.position[1]) / 6 + 300 + "px";
-    },
-    _contentRight() {
-      return (15000 - this.position[1]) / 7 + "px";
-    },
-  },
   watch: {
-    _curtainTop(val) {
-      this.curtainTop = val;
-    },
-    _spoutTop(val) {
-      this.spoutTop = val;
-    },
-    _knobTop(val) {
-      this.knobTop = val;
-    },
-    _waterTop(val) {
-      this.waterTop = val;
-    },
-    _bottomWaterTop(val) {
-      this.bottomWaterTop = val;
-    },
-    _bottomWaterRight(val) {
-      this.bottomWaterRight = val;
-    },
-    _knobRotation(val) {
-      this.knobRotation = val;
-    },
-    _whiteTop(val) {
-      this.whiteTop = val;
-    },
-    _contentTop(val) {
-      this.contentTop = val;
-    },
-    _contentRight(val) {
-      this.contentRight = val;
-    },
+    position(val) {
+      console.log(val);
+      if (this.position[1] > 5000)
+        this.curtainTop = (-this.position[1] + 5000) / 8 + "px";
+      else
+        this.curtainTop = 0 + "px";
+      if (this.position[1] > 5000)
+        this.spoutTop = (-this.position[1] + 5000) / 8 + 200 + "px";
+      else
+        this.spoutTop = 200 + "px";
+      if (this.position[1] > 5000)
+        this.knobTop = (-this.position[1] + 5000) / 8 + 20 + "px";
+      else
+        this.knobTop = 20 + "px";
+      if (this.position[1] > 5000) {
+        this.waterTop = (this.position[1]) / 28 - 900 + "px";
+      this.blocksBottom = (this.position[1] - 15500) / 28 - 900 + "px";
+      }
+      else {
+        this.waterTop = window.innerHeight * 1.5 + "px";
+        this.blocksBottom = window.innerHeight * 1.5 + "px";
+      }
+      if (this.position[1] > 6000)
+        this.bottomWaterTop = (-this.position[1] + 6000) / 6 + (window.innerHeight * 1.5) + "px";
+      else
+        this.bottomWaterTop = (window.innerHeight * 1.5) + 900 + "px";
+      if (this.position[1] > 8000)
+        this.bottomWaterRight = (8000 - this.position[1]) / 8 + "px";
+      else
+        this.bottomWaterRight = -200 + "%";
+      this.knobRotation = this.position[1] / 80 + "deg";
+      this.whiteTop = (15000 - this.position[1]) / 6 + "px";
+      this.contentTop = (15000 - this.position[1]) / 6 + 300 + "px";
+      this.contentRight = (15000 - this.position[1]) / 7 + "px";
+    }
   }
 };
 </script>
 
 <style>
+@font-face {
+  font-family: 'Manufaktur';
+  src: url('./assets/Manufaktur-Expanded-Bold.woff') format('woff'),
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -141,11 +121,25 @@ body {
   background: #002b49;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: 'Manufaktur', sans-serif;
+}
+
+h1 {
+  font-size: 20px;
+}
+
 #app {
   display: flex;
   flex-direction: column;
   height: 15500px;
-  background: linear-gradient(180deg, #002b49 0%, #002b49 50%, #002947 100%);
+  background: #002b49;
 }
 
 #curtain {
@@ -154,10 +148,10 @@ body {
   height: 820px;
   background: #002b49;
   z-index: 2;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
 }
 
 #white {
@@ -167,10 +161,10 @@ body {
   position: fixed;
   left: 0;
   z-index: 5;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
 }
 
 #y {
@@ -181,10 +175,10 @@ body {
   font-size: 20px;
   padding: 10px;
   z-index: 10;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
 }
 
 #water-x {
@@ -195,10 +189,10 @@ body {
   font-size: 20px;
   padding: 10px;
   z-index: 10;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
 }
 
 #header {
@@ -209,10 +203,10 @@ body {
   z-index: 10;
   filter: invert(0);
   mix-blend-mode: difference;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
 }
 
 #spout {
@@ -220,10 +214,10 @@ body {
   width: 300px;
   left: 56px;
   z-index: 3;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
 }
 
 #knob {
@@ -231,10 +225,10 @@ body {
   width: 225px;
   left: 0;
   z-index: 4;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
 }
 
 #water {
@@ -252,30 +246,115 @@ body {
   position: fixed;
   width: 300%;
   z-index: 1;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
 }
 
 #about-header {
   position: fixed;
-  width: 80%;
-  left: 10%;
+  width: 50%;
+  left: 25%;
   margin-top: 300px;
   color: #002b49;
   padding: 10px;
   text-align: center;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  transition: .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s ease-in-out;
+  -webkit-transition: -webkit-transform .02s ease-in-out;
 }
 
 #content {
   width: 100%;
-  transition: opacity .5s ease-in-out;
+  transition: opacity .2s ease-in-out;
+  text-align: center;
   z-index: 10;
+}
+
+#circular-wrapper {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  bottom: 15px;
+  right: 14px;
+  z-index: 10;
+}
+
+#circular-1 {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#circular-2 {
+  transition: top .02s linear;
+  -moz-transition: -moz-transform .02s linear;
+  -ms-transition: -ms-transform .02s linear;
+  -webkit-transition: -webkit-transform .02s linear;
+  animation: rotate 8s linear infinite;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#circular-1:hover,
+#circular-2:hover {
+  animation-play-state: paused;
+  /* Add this line */
+  cursor: pointer;
+  opacity: .8;
+}
+
+#blocks {
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+  height: 25%;
+  position: fixed;
+  bottom: 50px;
+}
+
+.show {
+
+}
+
+.hide {
+  display: none;
+}
+
+.block {
+  margin: 15px;
+  display: block;
+  text-align: left;
+  color: #002b49;
+}
+
+.filter {
+  animation: filter 2s;
+}
+
+@keyframes filter {
+  from {
+      filter: none;
+  }
+  to {
+      filter: invert(0);
+      mix-blend-mode: difference;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .fadeout {
