@@ -1,32 +1,70 @@
 <template>
   <div id="app">
-    <div id="curtain" :style="{ top: curtainTop }"></div>
-    <h1 id="y">{{ position[1] }}</h1>
-    <div id="white" :style="{ top: whiteTop }"></div>
-    <div id="circular-wrapper" @click="openContact()" :class="position[1] >= 8800 ? 'show' : 'hide'">
-      <img id="circular-1" src="./assets/circular-01.png">
-      <img id="circular-2" src="./assets/circular-02.png">
+    <div id="upper">
+      <!-- <h1 id="y">{{ position[1] }}</h1> -->
+      <h1 id="request-service">Request Service</h1>
+      <img
+        id="header"
+        src="./assets/Coffee Syndicate Logo Full.svg"
+        alt="Coffee Syndicate Logo"
+      />
+      <h1 id="about-header" :style="{opacity: (400 - position[1]) / 400}">
+        Coffee Equipment Sales, Service & Software Solutions
+      </h1>
+      <img
+        id="bottom-water"
+        src="./assets/bottom_water.svg"
+        alt="bottom-water"
+      />
     </div>
-    <img id="header" src="./assets/Coffee Syndicate Logo Full.svg" alt="Coffee Syndicate Logo" />
-    <img id="knob" src="./assets/knob.png" alt="knob" :style="{ transform: translateString(0, knobTop, knobRotation) }" />
-    <img id="spout" src="./assets/spout.png" alt="spout" :style="{ transform: translateString(0, spoutTop) }" />
-    <img id="water" src="./assets/water.png" alt="water" :style="{ transform: translateString(0, waterTop) }" />
-    <img id="bottom-water" src="./assets/bottom_water.svg" alt="bottom-water"
-      :style="{ transform: translateString(bottomWaterRight, bottomWaterTop) }" />
-    <div id="content" :style="{ top: contentTop }" :class="position[1] >= 8800 ? 'show' : 'hide'">
-      <h1 id="about-header">coffee syndicate offers coffee equipment sales, service and custom software solutions to the
-        salt lake valley and beyond.</h1>
-      <div id="blocks" :style="{transform: translateString(0, blocksBottom)}">
-        <div class="block">
-          <h2>sales</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla minima illum ab officia non quod quas, exercitationem vel iure corrupti nihil sequi blanditiis inventore. Accusamus ex doloribus iste reiciendis eveniet.</p></div>
-        <div class="block">
-          <h2>service</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi doloribus minima cum nemo aliquam sit iste suscipit ex molestias ducimus laudantium delectus deleniti aliquid, nulla neque obcaecati sunt ipsum tenetur!</p></div>
-        <div class="block">
-          <h2>software</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem adipisci qui hic aperiam ad consectetur, praesentium quis corrupti blanditiis sunt magnam tempora nobis, aliquid repudiandae placeat iure laborum accusamus est.</p></div>
+    <div id="content">
+      <div id="circular-wrapper" @click="openContact()">
+        <img id="circular-1" src="./assets/circular-01.png" />
+        <img id="circular-2" src="./assets/circular-02.png" />
       </div>
+      <div id="blocks">
+        <div class="block">
+          <h2>Sales</h2>
+          <p>
+            We distribute coffee equipment from trusted manufactures that we've relied on
+            in our own cafes over the years. Not all equipment is created equal, and when
+            your business depends on providing quality and consistency, day in and day out,
+            we think it's worth springing for the good stuff. Every brand we sell is one We
+            believe in and one which has great parts availability and service policies.
+          </p>
+          <p class="reveal">
+            Expertise
+          </p>
+        </div>
+        <div class="block">
+          <h2>Service</h2>
+          <p>
+           No matter how fancy your coffee equipment is, it will eventually need
+           some love, either in the form of on site repairs or preventative maintenance
+           to keep it running strong. We offer regular service Monday thru Friday and
+           emergency service outside of our standard window and on weekends and holidays.
+          </p>
+          <p class="reveal">
+            Request Service
+          </p>
+        </div>
+        <div class="block">
+          <h2>Software</h2>
+          <p>
+           Over the years of running coffee shops and roasteries we've developed some unique
+           software solutions to make running a small business much easier. From till tracking
+           to tip distribution and even a full featured roasting software, we've been able to
+           streamline mundane tasks and save hours every week. We're always looking for new
+           challenges to tackle and would love to hear about your business and how we can help.
+          </p>
+          <p class="reveal">
+            Expertise
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      &copy; Coffee Syndicate {{ new Date().getFullYear() }}
     </div>
   </div>
 </template>
@@ -38,86 +76,41 @@ export default {
   mixins: [windowScrollPosition("position")],
   name: "App",
   components: {},
-  mounted() {
-    for (let i = 0; i < 15500; i++)
-      setTimeout(() => {
-        window.scrollTo(0, i);
-      }, i * 0.5);
-  },
+  mounted() {},
   data() {
-    return {
-      curtainTop: 0 + "px",
-      spoutTop: 200 + "px",
-      knobTop: 20 + "px",
-      waterTop: window.innerHeight * 1.5 + "px",
-      bottomWaterTop: window.innerHeight * 1.5 + 900 + "px",
-      bottomWaterRight: -200 + "%",
-      knobRotation: 0 + "deg",
-      whiteTop: -100000 + "px",
-      contentTop: 300 + "px",
-      contentRight: 0 + "px",
-      blocksBottom: window.innerHeight * 1.5 + 300 + "px"
-    };
+    return {};
   },
   methods: {
-    translateString(x = '0px', y = '0px', angle = '0deg') {
+    translateString(x = "0px", y = "0px", angle = "0deg") {
       return `translate3d(${x}, ${y}, 0) rotate(${angle})`;
     },
     openContact() {
       window.open("https://www.coffeesyndicate.com/contact", "_blank");
-    }
+    },
   },
   watch: {
     position(val) {
       console.log(val);
-      if (this.position[1] > 5000)
-        this.curtainTop = (-this.position[1] + 5000) / 8 + "px";
-      else
-        this.curtainTop = 0 + "px";
-      if (this.position[1] > 5000)
-        this.spoutTop = (-this.position[1] + 5000) / 8 + 200 + "px";
-      else
-        this.spoutTop = 200 + "px";
-      if (this.position[1] > 5000)
-        this.knobTop = (-this.position[1] + 5000) / 8 + 20 + "px";
-      else
-        this.knobTop = 20 + "px";
-      if (this.position[1] > 5000) {
-        this.waterTop = (this.position[1]) / 28 - 900 + "px";
-      this.blocksBottom = (this.position[1] - 15500) / 28 - 900 + "px";
-      }
-      else {
-        this.waterTop = window.innerHeight * 1.5 + "px";
-        this.blocksBottom = window.innerHeight * 1.5 + "px";
-      }
-      if (this.position[1] > 6000)
-        this.bottomWaterTop = (-this.position[1] + 6000) / 6 + (window.innerHeight * 1.5) + "px";
-      else
-        this.bottomWaterTop = (window.innerHeight * 1.5) + 900 + "px";
-      if (this.position[1] > 8000)
-        this.bottomWaterRight = (8000 - this.position[1]) / 8 + "px";
-      else
-        this.bottomWaterRight = -200 + "%";
-      this.knobRotation = this.position[1] / 80 + "deg";
-      this.whiteTop = (15000 - this.position[1]) / 6 + "px";
-      this.contentTop = (15000 - this.position[1]) / 6 + 300 + "px";
-      this.contentRight = (15000 - this.position[1]) / 7 + "px";
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
 @font-face {
-  font-family: 'Manufaktur';
-  src: url('./assets/Manufaktur-Expanded-Bold.woff') format('woff'),
+  font-family: "Manufaktur";
+  src: url("./assets/Manufaktur-Expanded-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Prompt";
+  src: url("./assets/Prompt-Medium.woff") format("woff");
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  overscroll-behavior: none;
   background: #002b49;
 }
 
@@ -126,45 +119,39 @@ h2,
 h3,
 h4,
 h5,
-h6,
-p {
-  font-family: 'Manufaktur', sans-serif;
+h6 {
+  font-family: "Manufaktur", sans-serif;
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 1rem;
+}
+
+p {
+  font-size: .85rem;
+  line-height: 1.5rem;
+  font-family: "Prompt", sans-serif;
 }
 
 #app {
   display: flex;
   flex-direction: column;
-  height: 15500px;
   background: #002b49;
 }
 
-#curtain {
-  position: fixed;
+#upper {
   width: 100%;
-  height: 820px;
-  background: #002b49;
-  z-index: 2;
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
+  height: 100%;
+  background: linear-gradient(180deg, #002b49 0%, #002b49 50%, #002036 100%);
 }
 
-#white {
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 50%, #fafafa 100%);
-  width: 100%;
-  height: 1500px;
-  position: fixed;
-  left: 0;
-  z-index: 5;
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
+#footer {
+  height: 15%;
+  padding: 2%;
+  color: #002b49;
+  background: white;
+  font-family: "Manufaktur", sans-serif;
+  text-align: center;
 }
 
 #y {
@@ -175,111 +162,79 @@ h1 {
   font-size: 20px;
   padding: 10px;
   z-index: 10;
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
+  transition: top 0.02s linear;
+  -moz-transition: -moz-transform 0.02s linear;
+  -ms-transition: -ms-transform 0.02s linear;
+  -webkit-transition: -webkit-transform 0.02s linear;
 }
 
-#water-x {
-  position: fixed;
-  top: 30px;
-  right: 0;
-  color: white;
-  font-size: 20px;
-  padding: 10px;
-  z-index: 10;
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
+.reveal {
+  font-family: "Manufaktur", sans-serif;
+  bottom: 0;
+  position: absolute;
+  color: #002b49;
+  text-decoration: underline;
+}
+
+.reveal:hover {
+  color: #F5D8B6;
+  cursor: pointer;
 }
 
 #header {
   position: fixed;
-  width: 250px;
-  top: 15px;
-  left: calc(50% - 125px);
-  z-index: 10;
+  width: 200px;
+  top: 25px;
+  left: calc(50% - 100px);
   filter: invert(0);
   mix-blend-mode: difference;
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
-}
-
-#spout {
-  position: fixed;
-  width: 300px;
-  left: 56px;
-  z-index: 3;
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
-}
-
-#knob {
-  position: fixed;
-  width: 225px;
-  left: 0;
-  z-index: 4;
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
-}
-
-#water {
-  position: fixed;
-  width: 100px;
-  left: 250px;
-  z-index: 1;
-  transition: top 0s linear;
-  -moz-transition: -moz-transform 0s linear;
-  -ms-transition: -ms-transform 0s linear;
-  -webkit-transition: -webkit-transform 0s linear;
+  z-index: 10;
 }
 
 #bottom-water {
+  width: 100%;
+  margin-bottom: -3%;
+  transition: top 0.02s linear;
+  -moz-transition: -moz-transform 0.02s linear;
+  -ms-transition: -ms-transform 0.02s linear;
+  -webkit-transition: -webkit-transform 0.02s linear;
+}
+
+#request-service {
   position: fixed;
-  width: 300%;
-  z-index: 1;
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
+  top: 0;
+  right: 20px;
+  font-size: 1rem;
+  color: white;
+  filter: invert(0);
+  mix-blend-mode: difference;
+  z-index: 10;
 }
 
 #about-header {
-  position: fixed;
-  width: 50%;
-  left: 25%;
-  margin-top: 300px;
-  color: #002b49;
-  padding: 10px;
   text-align: center;
-  transition: .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s ease-in-out;
-  -webkit-transition: -webkit-transform .02s ease-in-out;
+  margin: 0 auto;
+  margin-top: 40%;
+  margin-bottom: 20%;
+  width: 50%;
+  color: white;
+  font-size: 1rem;
 }
 
 #content {
   width: 100%;
-  transition: opacity .2s ease-in-out;
-  text-align: center;
-  z-index: 10;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 50%, #fafafa 100%);
+  position: relative;
+  overflow: hidden;
 }
 
 #circular-wrapper {
-  position: fixed;
-  width: 250px;
-  height: 250px;
-  bottom: 15px;
-  right: 14px;
-  z-index: 10;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 10%;
+  z-index: 9;
 }
 
 #circular-1 {
@@ -290,10 +245,10 @@ h1 {
 }
 
 #circular-2 {
-  transition: top .02s linear;
-  -moz-transition: -moz-transform .02s linear;
-  -ms-transition: -ms-transform .02s linear;
-  -webkit-transition: -webkit-transform .02s linear;
+  transition: top 0.02s linear;
+  -moz-transition: -moz-transform 0.02s linear;
+  -ms-transition: -ms-transform 0.02s linear;
+  -webkit-transition: -webkit-transform 0.02s linear;
   animation: rotate 8s linear infinite;
   width: 100%;
   position: absolute;
@@ -306,20 +261,18 @@ h1 {
   animation-play-state: paused;
   /* Add this line */
   cursor: pointer;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 #blocks {
   display: flex;
   flex-direction: row;
-  width: 75%;
+  width: 100%;
   height: 25%;
-  position: fixed;
-  bottom: 50px;
+  margin-top: 10%;
 }
 
 .show {
-
 }
 
 .hide {
@@ -327,7 +280,8 @@ h1 {
 }
 
 .block {
-  margin: 15px;
+  margin: 3%;
+  width: 30%;
   display: block;
   text-align: left;
   color: #002b49;
@@ -339,11 +293,11 @@ h1 {
 
 @keyframes filter {
   from {
-      filter: none;
+    filter: none;
   }
   to {
-      filter: invert(0);
-      mix-blend-mode: difference;
+    filter: invert(0);
+    mix-blend-mode: difference;
   }
 }
 
@@ -363,4 +317,5 @@ h1 {
 
 .fadein {
   opacity: 1;
-}</style>
+}
+</style>
