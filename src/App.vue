@@ -3,21 +3,30 @@
     <div id="upper">
       <!-- <h1 id="y">{{ position[1] }}</h1> -->
       <h1 id="request-service">Request Service</h1>
-      <div
-        id="header"
-      >
-        <img src="./assets/Coffee Syndicate Logo Full_SPLIT-01.svg" alt="logo-1" id="logo-1"/>
-        <img src="./assets/Coffee Syndicate Logo Full_SPLIT-02.svg" alt="logo-2" id="logo-2"/>
-        <img src="./assets/Coffee Syndicate Logo Full_SPLIT-03.svg" alt="logo-3" id="logo-3"/>
-    </div>
-      <h1 id="about-header" :style="{opacity: (400 - position[1]) / 400}">
+      <img
+        src="./assets/Coffee Syndicate Logo Full_SPLIT-01.svg"
+        alt="logo-1"
+        id="logo-1"
+      />
+      <img
+        src="./assets/Coffee Syndicate Logo Full_SPLIT-02.svg"
+        alt="logo-2"
+        id="logo-2"
+      />
+      <img
+        src="./assets/Coffee Syndicate Logo Full_SPLIT-03.svg"
+        alt="logo-3"
+        id="logo-3"
+      />
+      <div class="spacer"></div>
+      <!-- <h1 id="about-header" :style="{ opacity: (400 - position[1]) / 400 }">
         Coffee Equipment Sales, Service & Software Solutions
-      </h1>
+      </h1> -->
       <img
         id="bottom-water"
         src="./assets/bottom_water.svg"
         alt="bottom-water"
-        :style="{marginLeft: waterLeft + 'px'}"
+        :style="{ marginLeft: waterLeft + 'px' }"
       />
     </div>
     <div id="content">
@@ -29,40 +38,38 @@
         <div class="block">
           <h2>Sales</h2>
           <p>
-            We distribute coffee equipment from trusted manufactures that we've relied on
-            in our own cafes over the years. Not all equipment is created equal, and when
-            your business depends on providing quality and consistency, day in and day out,
-            we think it's worth springing for the good stuff. Every brand we sell is one We
-            believe in and one which has great parts availability and service policies.
+            We distribute coffee equipment from trusted manufactures that we've
+            relied on in our own cafes over the years. Not all equipment is
+            created equal, and when your business depends on providing quality
+            and consistency, day in and day out, we think it's worth springing
+            for the good stuff. Every brand we sell is one We believe in and one
+            which has great parts availability and service policies.
           </p>
-          <p class="reveal">
-            Expertise
-          </p>
+          <p class="reveal">Expertise</p>
         </div>
         <div class="block">
           <h2>Service</h2>
           <p>
-           No matter how fancy your coffee equipment is, it will eventually need
-           some love, either in the form of on site repairs or preventative maintenance
-           to keep it running strong. We offer regular service Monday thru Friday and
-           emergency service outside of our standard window and on weekends and holidays.
+            No matter how fancy your coffee equipment is, it will eventually
+            need some love, either in the form of on site repairs or
+            preventative maintenance to keep it running strong. We offer regular
+            service Monday thru Friday and emergency service outside of our
+            standard window and on weekends and holidays.
           </p>
-          <p class="reveal">
-            Request Service
-          </p>
+          <p class="reveal">Request Service</p>
         </div>
         <div class="block">
           <h2>Software</h2>
           <p>
-           Over the years of running coffee shops and roasteries we've developed some unique
-           software solutions to make running a small business much easier. From till tracking
-           to tip distribution and even a full featured roasting software, we've been able to
-           streamline mundane tasks and save hours every week. We're always looking for new
-           challenges to tackle and would love to hear about your business and how we can help.
+            Over the years of running coffee shops and roasteries we've
+            developed some unique software solutions to make running a small
+            business much easier. From till tracking to tip distribution and
+            even a full featured roasting software, we've been able to
+            streamline mundane tasks and save hours every week. We're always
+            looking for new challenges to tackle and would love to hear about
+            your business and how we can help.
           </p>
-          <p class="reveal">
-            Expertise
-          </p>
+          <p class="reveal">Expertise</p>
         </div>
       </div>
     </div>
@@ -95,7 +102,7 @@ export default {
   },
   watch: {
     position(val) {
-      this.waterLeft = -window.innerWidth + (val[1] / 4);
+      this.waterLeft = -window.innerWidth + val[1] / 4;
     },
   },
 };
@@ -133,9 +140,13 @@ h1 {
 }
 
 p {
-  font-size: .85rem;
+  font-size: 0.85rem;
   line-height: 1.5rem;
   font-family: "Prompt", sans-serif;
+}
+
+.spacer {
+  height: 60vh;
 }
 
 #app {
@@ -148,7 +159,7 @@ p {
 #upper {
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #002b49 0%, #002b49 50%, #002036 100%);
+  background: #002b49;
 }
 
 #footer {
@@ -183,35 +194,36 @@ p {
 }
 
 .reveal:hover {
-  color: #F5D8B6;
+  color: #ffa96d;
   cursor: pointer;
 }
 
-#header {
+#logo-1 {
+  z-index: 10;
   position: fixed;
   width: 500px;
   top: 25px;
   left: calc(50% - 250px);
-  z-index: 11;
-}
-
-#header img {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-#logo-1 {
-  z-index: 11;
+  filter: invert(1);
+  mix-blend-mode: difference;
 }
 
 #logo-2 {
-  z-index: 11;
+  z-index: 8;
+  position: fixed;
+  width: 500px;
+  top: 25px;
+  left: calc(50% - 250px);
+  filter: invert(1);
+  mix-blend-mode: difference;
 }
 
 #logo-3 {
   z-index: 11;
+  position: fixed;
+  width: 500px;
+  top: 25px;
+  left: calc(50% - 250px);
 }
 
 #bottom-water {
@@ -222,17 +234,26 @@ p {
   -moz-transition: -moz-transform 0.02s linear;
   -ms-transition: -ms-transform 0.02s linear;
   -webkit-transition: -webkit-transform 0.02s linear;
+  z-index: 9;
 }
 
 #request-service {
   position: fixed;
-  top: 0;
-  right: 20px;
+  top: -1rem;
+  right: 0;
   font-size: 1rem;
+  padding: .5rem;
+  border-radius: 0px 0px 0px 5px;
   color: white;
-  filter: invert(0);
+  filter: invert(1);
   mix-blend-mode: difference;
   z-index: 10;
+  background-color: #002b49;
+}
+
+#request-service:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 1px 1px #002b49;
 }
 
 #about-header {
@@ -250,6 +271,7 @@ p {
   background: linear-gradient(180deg, #ffffff 0%, #ffffff 50%, #fafafa 100%);
   position: relative;
   overflow: hidden;
+  z-index: 9;
 }
 
 #circular-wrapper {
