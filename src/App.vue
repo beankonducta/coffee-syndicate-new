@@ -1,7 +1,7 @@
 <template>
   <div id="app">
+    <!-- <h1 id="y">{{ position[1] }}</h1> -->
     <div id="upper">
-      <!-- <h1 id="y">{{ position[1] }}</h1> -->
       <h1 id="request-service">Request Service</h1>
       <img
         src="./assets/Coffee Syndicate Logo Full_SPLIT-01.svg"
@@ -18,17 +18,16 @@
         alt="logo-3"
         id="logo-3"
       />
-      <div class="spacer"></div>
-      <!-- <h1 id="about-header" :style="{ opacity: (400 - position[1]) / 400 }">
+      <img
+      id="bottom-water"
+      src="./assets/bottom_water.svg"
+      alt="bottom-water"
+      :style="{ marginLeft: waterLeft + 'px' }"
+    />
+    </div>
+    <!-- <h1 id="about-header" :style="{ opacity: (400 - position[1]) / 400 }">
         Coffee Equipment Sales, Service & Software Solutions
       </h1> -->
-      <img
-        id="bottom-water"
-        src="./assets/bottom_water.svg"
-        alt="bottom-water"
-        :style="{ marginLeft: waterLeft + 'px' }"
-      />
-    </div>
     <div id="content">
       <!-- <div id="circular-wrapper" @click="openContact()">
         <img id="circular-1" src="./assets/circular-01.png" />
@@ -102,7 +101,7 @@ export default {
   },
   watch: {
     position(val) {
-      this.waterLeft = -window.innerWidth + val[1] / 4;
+      this.waterLeft = -window.innerWidth + val[1] / 2;
     },
   },
 };
@@ -124,6 +123,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   background: #002b49;
+  min-height: 80vh;
 }
 
 h1,
@@ -145,21 +145,16 @@ p {
   font-family: "Prompt", sans-serif;
 }
 
-.spacer {
-  height: 60vh;
-}
 
 #app {
-  display: flex;
-  flex-direction: column;
   background: #002b49;
-  overflow-x: hidden;
+  overflow-x: clip;
+  min-height: 80vh;
 }
 
 #upper {
-  width: 100%;
-  height: 100%;
   background: #002b49;
+  position: relative;
 }
 
 #footer {
@@ -200,10 +195,10 @@ p {
 
 #logo-1 {
   z-index: 10;
-  position: fixed;
-  width: 500px;
+  position: sticky;
+  width: 50%;
   top: 25px;
-  left: calc(50% - 250px);
+  margin-left: 25%;
   filter: invert(1);
   mix-blend-mode: difference;
 }
@@ -211,29 +206,29 @@ p {
 #logo-2 {
   z-index: 8;
   position: fixed;
-  width: 500px;
+  width: 50%;
   top: 25px;
-  left: calc(50% - 250px);
+  left: 25%;
   filter: invert(1);
   mix-blend-mode: difference;
 }
 
 #logo-3 {
   z-index: 11;
-  position: fixed;
-  width: 500px;
+  position: sticky;
+  width: 50%;
   top: 25px;
-  left: calc(50% - 250px);
+  margin-left: 25%;
 }
 
 #bottom-water {
   position: relative;
   width: 300%;
   margin-bottom: -3%;
-  transition: top 0.02s linear;
-  -moz-transition: -moz-transform 0.02s linear;
-  -ms-transition: -ms-transform 0.02s linear;
-  -webkit-transition: -webkit-transform 0.02s linear;
+  transition: left 0.02s linear;
+  -moz-transition: -moz-transform 2s linear;
+  -ms-transition: -ms-transform 2s linear;
+  -webkit-transition: -webkit-transform 2s linear;
   z-index: 9;
 }
 
@@ -242,18 +237,19 @@ p {
   top: -1rem;
   right: 0;
   font-size: 1rem;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 0px 0px 0px 5px;
   color: white;
   filter: invert(1);
   mix-blend-mode: difference;
   z-index: 10;
   background-color: #002b49;
+  animation: subtle-move 2s infinite;
 }
 
 #request-service:hover {
   cursor: pointer;
-  animation: shadow .5s forwards;
+  animation: shadow 0.5s forwards;
 }
 
 @keyframes shadow {
@@ -262,6 +258,18 @@ p {
   }
   to {
     box-shadow: 0px 0px 1px 1px #002b49;
+  }
+}
+
+@keyframes subtle-move {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0px);
   }
 }
 
