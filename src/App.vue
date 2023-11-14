@@ -253,7 +253,16 @@ p {
 
 #request-service:hover {
   cursor: pointer;
-  box-shadow: 0px 0px 1px 1px #002b49;
+  animation: shadow .5s forwards;
+}
+
+@keyframes shadow {
+  from {
+    box-shadow: 0px 0px 0px 0px #002b49;
+  }
+  to {
+    box-shadow: 0px 0px 1px 1px #002b49;
+  }
 }
 
 #about-header {
