@@ -3,11 +3,13 @@
     <div id="upper">
       <!-- <h1 id="y">{{ position[1] }}</h1> -->
       <h1 id="request-service">Request Service</h1>
-      <img
+      <div
         id="header"
-        src="./assets/Coffee Syndicate Logo Full.svg"
-        alt="Coffee Syndicate Logo"
-      />
+      >
+        <img src="./assets/Coffee Syndicate Logo Full_SPLIT-01.svg" alt="logo-1" id="logo-1"/>
+        <img src="./assets/Coffee Syndicate Logo Full_SPLIT-02.svg" alt="logo-2" id="logo-2"/>
+        <img src="./assets/Coffee Syndicate Logo Full_SPLIT-03.svg" alt="logo-3" id="logo-3"/>
+    </div>
       <h1 id="about-header" :style="{opacity: (400 - position[1]) / 400}">
         Coffee Equipment Sales, Service & Software Solutions
       </h1>
@@ -15,13 +17,14 @@
         id="bottom-water"
         src="./assets/bottom_water.svg"
         alt="bottom-water"
+        :style="{marginLeft: waterLeft + 'px'}"
       />
     </div>
     <div id="content">
-      <div id="circular-wrapper" @click="openContact()">
+      <!-- <div id="circular-wrapper" @click="openContact()">
         <img id="circular-1" src="./assets/circular-01.png" />
         <img id="circular-2" src="./assets/circular-02.png" />
-      </div>
+      </div> -->
       <div id="blocks">
         <div class="block">
           <h2>Sales</h2>
@@ -78,7 +81,9 @@ export default {
   components: {},
   mounted() {},
   data() {
-    return {};
+    return {
+      waterLeft: 0,
+    };
   },
   methods: {
     translateString(x = "0px", y = "0px", angle = "0deg") {
@@ -90,7 +95,7 @@ export default {
   },
   watch: {
     position(val) {
-      console.log(val);
+      this.waterLeft = -window.innerWidth + (val[1] / 4);
     },
   },
 };
@@ -137,6 +142,7 @@ p {
   display: flex;
   flex-direction: column;
   background: #002b49;
+  overflow-x: hidden;
 }
 
 #upper {
@@ -183,16 +189,34 @@ p {
 
 #header {
   position: fixed;
-  width: 200px;
+  width: 500px;
   top: 25px;
-  left: calc(50% - 100px);
-  filter: invert(0);
-  mix-blend-mode: difference;
-  z-index: 10;
+  left: calc(50% - 250px);
+  z-index: 11;
+}
+
+#header img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#logo-1 {
+  z-index: 11;
+}
+
+#logo-2 {
+  z-index: 11;
+}
+
+#logo-3 {
+  z-index: 11;
 }
 
 #bottom-water {
-  width: 100%;
+  position: relative;
+  width: 300%;
   margin-bottom: -3%;
   transition: top 0.02s linear;
   -moz-transition: -moz-transform 0.02s linear;
