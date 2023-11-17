@@ -33,42 +33,58 @@
         <img id="circular-1" src="./assets/circular-01.png" />
         <img id="circular-2" src="./assets/circular-02.png" />
       </div> -->
-      <div id="blocks">
-        <div class="block">
+      <div class="blocks">
+        <div class="block thirty">
           <h2>Sales</h2>
           <p>
-            We distribute coffee equipment from trusted manufactures that we've
-            relied on in our own cafes over the years. Not all equipment is
-            created equal, and when your business depends on providing quality
-            and consistency, day in and day out, we think it's worth springing
-            for the good stuff. Every brand we sell is one We believe in and one
-            which has great parts availability and service policies.
+            We distribute top-tier coffee & espresso equipment from brands we have first-hand
+            experience with. We only offer equipment that we know will perform well and last
+            for years to come. We also offer a wide range of accessories and smallwares to
+            help you get the most out of your equipment.
+            <br>
+            <br>
+            We offer full equipment packages, including installation and training, as well as
+            individual equipment purchases. Financing or lease is available for qualified buyers.
           </p>
-          <p class="reveal">Expertise</p>
+          <p class="reveal">Brands</p>
         </div>
-        <div class="block">
+        <div class="block thirty">
           <h2>Service</h2>
           <p>
-            No matter how fancy your coffee equipment is, it will eventually
-            need some love, either in the form of on site repairs or
-            preventative maintenance to keep it running strong. We offer regular
-            service Monday thru Friday and emergency service outside of our
-            standard window and on weekends and holidays.
+            Even the best coffee equipment needs service and we're certified to work on
+            the brands we sell. We also offer service on a wide range of other brands
+            and can even perform emergency service after hours and on weekends or holidays.
+            <br>
+            <br>
+            We also have experience working on industrial control systems, specifically in
+            the realm of coffee roasters and packaging equipment.
           </p>
           <p class="reveal">Request Service</p>
         </div>
-        <div class="block">
+        <div class="block thirty">
           <h2>Software</h2>
           <p>
-            Over the years of running coffee shops and roasteries we've
-            developed some unique software solutions to make running a small
-            business much easier. From till tracking to tip distribution and
-            even a full featured roasting software, we've been able to
-            streamline mundane tasks and save hours every week. We're always
-            looking for new challenges to tackle and would love to hear about
-            your business and how we can help.
+            We've developed custom software solutions to make the mundane tasks of running a 
+            small business easier. Web apps we've made include a till and tip management system
+            with Square integration, various order management and fulfillment tools, and even a 
+            browser-based roasting software suite.
+            <br>
+            <br>
+            We'd love to consult and see if there's a custom or prefab solution that we can integrate
+            into your workflow to increase productivity.
           </p>
-          <p class="reveal">Expertise</p>
+          <p class="reveal">More</p>
+        </div>
+      </div>
+      <div class="blocks">
+        <div class="block fifty">
+          <h2>About</h2>
+          <p>
+           Coffee Syndicate spawned from years of tinkering with hardware and software. We've refurbished
+           dozens of espresso machines, grinders, brewers, and have developed custom software for our own
+           business use as well as for other small businesses. We're passionate about coffee and technology and
+           the efficiencies that the marriage of the two can create.
+          </p>
         </div>
       </div>
     </div>
@@ -182,7 +198,7 @@ p {
 
 .reveal {
   font-family: "Manufaktur", sans-serif;
-  bottom: 0;
+  bottom: -50px;
   position: absolute;
   color: #002b49;
   text-decoration: underline;
@@ -327,11 +343,11 @@ p {
   opacity: 0.8;
 }
 
-#blocks {
+.blocks {
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .show {
@@ -341,12 +357,20 @@ p {
   display: none;
 }
 
-.block {
-  margin: 3%;
+.thirty {
   width: 30%;
+}
+
+.fifty {
+  width: 50%;
+}
+
+.block {
+  margin: 0% 7% 5% 7%;
   display: block;
   text-align: left;
   color: #002b49;
+  position: relative;
 }
 
 .filter {
