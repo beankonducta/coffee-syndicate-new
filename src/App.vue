@@ -2,61 +2,102 @@
   <div id="app">
     <div id="top"></div>
     <div id="header">
-      <img :src="require('./assets/Coffee Syndicate Logo Full.svg')" alt="Coffee Syndicate Logo" id="logo" @click="scrollTo('#top')">
+      <img :src="require('./assets/Coffee Syndicate Logo Full.svg')" alt="Coffee Syndicate Logo" id="logo"
+        @click="scrollTo('#top')">
     </div>
-    <img src="./assets/bottom_water.svg" alt="water" id="water" :style="{left: waterLeft + 'px'}">
+    <img src="./assets/bottom_water.svg" alt="water" id="water" :style="{ left: waterLeft + 'px' }">
 
     <div id="content">
-      <img :src="require('./assets/Coffee Syndicate Mark.svg')" alt="Coffee Syndicate Mark" id="mark" @click="scrollTo('#top')">
-      <div id="scroll-progress-container" :style="{height: position[1] +'px'}"></div>
+      <img :src="require('./assets/Coffee Syndicate Mark.svg')" alt="Coffee Syndicate Mark" id="mark"
+        @click="scrollTo('#top')">
+      <div id="scroll-progress-container" :style="{ height: position[1] * .5 + 'px' }"></div>
       <div id="scroll-progress-fill"></div>
       <div class="block" id="about">
+        <div class="inner-block-full">
         <h1>ABOUT</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptatibus facilis vel ullam, voluptate cumque aspernatur ab sapiente debitis officia temporibus, eius vitae non nisi maxime atque. Inventore, ipsam cumque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, officiis repudiandae dolorem odit voluptatum qui! Dignissimos culpa atque eaque temporibus, excepturi voluptatem facere maiores et corporis harum qui aspernatur similique! Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum expedita natus culpa impedit autem, omnis sapiente exercitationem officia rerum quia consectetur facere saepe voluptate quibusdam nobis eius inventore animi ut. Lorem ipsum dolor sit a
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptatibus facilis vel ullam, voluptate cumque
+          aspernatur ab sapiente debitis officia temporibus, eius vitae non nisi maxime atque. Inventore, ipsam cumque.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, officiis repudiandae dolorem odit voluptatum
+          qui! Dignissimos culpa atque eaque temporibus, excepturi voluptatem facere maiores et corporis harum qui
+          aspernatur similique! Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum expedita natus culpa
+          impedit autem, omnis sapiente exercitationem officia rerum quia consectetur facere saepe voluptate quibusdam
+          nobis eius inventore animi ut. Lorem ipsum dolor sit a
         </p>
+      </div>
       </div>
       <div class="block" id="equipment">
-        <h1>EQUIPMENT</h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum unde maxime et laborum qui, sapiente, veritatis dolorem ex ab in provident commodi non odio fugit corrupti quae voluptate, neque mollitia!
-          <br>
-          <br>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis blanditiis repudiandae mollitia exercitationem culpa accusamus iste, omnis voluptas at quaerat libero? Nam perspiciatis deserunt, veritatis commodi sequi quas laboriosam reprehenderit.
-        </p>
+        <div class="inner-block">
+          <h1>EQUIPMENT</h1>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum unde maxime et laborum qui, sapiente, veritatis
+            dolorem ex ab in provident commodi non odio fugit corrupti quae voluptate, neque mollitia!
+            <br>
+            <br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis blanditiis repudiandae mollitia
+            exercitationem culpa accusamus iste, omnis voluptas at quaerat libero? Nam perspiciatis deserunt, veritatis
+            commodi sequi quas laboriosam reprehenderit.
+          </p>
+        </div>
+        <div class="inner-block">
+
+        </div>
       </div>
       <div class="block" id="service">
-        <h1>SERVICE</h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum unde maxime et laborum qui, sapiente, veritatis dolorem ex ab in provident commodi non odio fugit corrupti quae voluptate, neque mollitia!
-          <br>
-          <br>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis blanditiis repudiandae mollitia exercitationem culpa accusamus iste, omnis voluptas at quaerat libero? Nam perspiciatis deserunt, veritatis commodi sequi quas laboriosam reprehenderit.
-        </p>
+        <div class="inner-block">
+          <h1>SERVICE</h1>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum unde maxime et laborum qui, sapiente, veritatis
+            dolorem ex ab in provident commodi non odio fugit corrupti quae voluptate, neque mollitia!
+            <br>
+            <br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis blanditiis repudiandae mollitia
+            exercitationem culpa accusamus iste, omnis voluptas at quaerat libero? Nam perspiciatis deserunt, veritatis
+            commodi sequi quas laboriosam reprehenderit.
+          </p>
+        </div>
+        <div class="inner-block">
+          <img src="./assets/wrench-01.svg" alt="Wrench" class="icon" id="wrench">
+          <img src="./assets/wrench-03.svg" alt="Bolt" class="icon" id="bolt">
+          <img src="./assets/wrench-02.svg" alt="Bolt" class="icon" id="working">
+        </div>
       </div>
       <div class="block" id="software">
+        <div class="inner-block">
         <h1>SOFTWARE</h1>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum unde maxime et laborum qui, sapiente, veritatis dolorem ex ab in provident commodi non odio fugit corrupti quae voluptate, neque mollitia!
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum unde maxime et laborum qui, sapiente, veritatis
+          dolorem ex ab in provident commodi non odio fugit corrupti quae voluptate, neque mollitia!
           <br>
           <br>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis blanditiis repudiandae mollitia exercitationem culpa accusamus iste, omnis voluptas at quaerat libero? Nam perspiciatis deserunt, veritatis commodi sequi quas laboriosam reprehenderit.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis blanditiis repudiandae mollitia
+          exercitationem culpa accusamus iste, omnis voluptas at quaerat libero? Nam perspiciatis deserunt, veritatis
+          commodi sequi quas laboriosam reprehenderit.
           <br>
           <br>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio minima provident architecto, dolorum autem modi culpa ratione, iste perferendis suscipit voluptatum quas harum voluptas ab numquam nostrum rerum, sapiente reiciendis! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque saepe vitae mollitia culpa nihil, id ex praesentium, dicta ipsum ratione odit tempora adipisci nam, quis repudiandae repellat reprehenderit fuga repellendus!
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio minima provident architecto, dolorum autem modi
+          culpa ratione, iste perferendis suscipit voluptatum quas harum voluptas ab numquam nostrum rerum, sapiente
+          reiciendis! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque saepe vitae mollitia culpa nihil, id
+          ex praesentium, dicta ipsum ratione odit tempora adipisci nam, quis repudiandae repellat reprehenderit fuga
+          repellendus!
 
         </p>
+        </div>
       </div>
       <div class="block" id="contact">
+        <div class="inner-block">
         <h1>CONTACT</h1>
         <p>
-          If you need service, are interested in talking equipment packages or would like to know more about the custom software solutions we've developed for small businesses, please contact us using this form. All inquiries will receive response within a business day.
+          If you need service, are interested in talking equipment packages or would like to know more about the custom
+          software solutions we've developed for small businesses, please contact us using this form. All inquiries will
+          receive response within a business day.
         </p>
+        </div>
       </div>
     </div>
     <div id="footer">
       <p>© 2020 Coffee Syndicate</p>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -67,7 +108,7 @@ export default {
   mixins: [windowScrollPosition("position")],
   name: "App",
   components: {},
-  mounted() {},
+  mounted() { },
   computed: {
     height() {
       return document.documentElement.clientHeight;
@@ -214,10 +255,18 @@ p {
   margin-left: 115px;
   margin-top: 5%;
   margin-bottom: 5%;
+  display: flex;
+  flex-direction: row;
 }
 
-.block p {
+.inner-block {
+  position: relative;
   width: 50%;
+}
+
+.inner-block-full {
+  position: relative;
+  width: 100%;
 }
 
 .rotate-90 {
@@ -252,4 +301,75 @@ p {
   width: 200%;
 }
 
-</style>
+.icon {
+  margin-left: 25%;
+  width: 50%;
+}
+
+#wrench {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: rotate-45-back 2s ease-in-out infinite;
+}
+
+@keyframes rotate-45-back {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(60deg);
+  }
+
+  75% {
+    transform: translateX(-50px);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    transform: translateX(0px);
+  }
+}
+
+@keyframes rotate-45-bolt {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(60deg);
+  }
+
+  75% {
+    transform: rotate(60deg);
+  }
+
+  100% {
+    transform: rotate(60deg);
+  }
+}
+
+#bolt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: rotate-45-bolt 2s ease-in-out infinite;
+}
+
+#working {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: rotate-infinite 10s linear infinite;
+}
+
+@keyframes rotate-infinite {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}</style>
