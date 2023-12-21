@@ -40,7 +40,7 @@
           </p>
         </div>
         <div class="inner-block">
-
+          <img src="./assets/Vector e65 group-01.svg" alt="e65 Group" id="e65">
         </div>
       </div>
       <div class="block" id="service">
@@ -59,7 +59,7 @@
         <div class="inner-block">
           <img src="./assets/wrench-01.svg" alt="Wrench" class="icon" id="wrench">
           <img src="./assets/wrench-03.svg" alt="Bolt" class="icon" id="bolt">
-          <img src="./assets/wrench-02.svg" alt="Bolt" class="icon" id="working">
+          <img src="./assets/wrench-02.svg" alt="Working" class="icon" id="working">
         </div>
       </div>
       <div class="block" id="software">
@@ -316,6 +316,13 @@ p {
   top: 0;
   left: 0;
   animation: rotate-45-back 2s ease-in-out infinite;
+}
+
+#e65 {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 50%;
 }
 
 @keyframes rotate-45-back {
