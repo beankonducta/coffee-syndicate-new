@@ -239,9 +239,14 @@ p {
 #mark {
   height: 100px;
   position: fixed;
+  cursor: pointer;
   top: 15px;
   left: 15px;
   z-index: 100;
+}
+
+#header #logo:hover, #mark:hover {
+  opacity: 90%;
 }
 
 #content {
