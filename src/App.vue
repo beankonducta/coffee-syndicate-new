@@ -143,6 +143,7 @@
         <div class="inner-block no-mobile">
           <div id="repair-container">
             <img src="./assets/repair.png" alt="Repair" id="repair" />
+            <div id="wrench-container">
             <img
               src="./assets/wrench-01.svg"
               alt="Wrench"
@@ -161,6 +162,7 @@
               class="icon"
               id="working"
             />
+            </div>  
           </div>
         </div>
       </div>
@@ -656,25 +658,32 @@ p {
   width: 50%;
 }
 
-#wrench {
+#wrench-container {
   position: absolute;
-  top: 45%;
-  left: -10%;
+  top: 35%;
+  left: 0%;
+}
+
+#wrench {
+  width: 100%;
+  position:absolute;
+  top: 0;
+  left: 0;
   animation: rotate-45-back 2s ease-in-out infinite;
   z-index: 2;
 }
 
 #bolt {
-  position: absolute;
-  top: 45%;
-  left: -10%;
+  width: 100%;
+  position:absolute;
+  top: 0;
+  left: 0;
   animation: rotate-45-bolt 2s ease-in-out infinite;
 }
 
 #working {
-  position: absolute;
-  top: 45%;
-  left: -10%;
+  width: 100%;
+
   animation: rotate-infinite 10s linear infinite;
 }
 
@@ -693,23 +702,21 @@ p {
 
 #software-img {
   width: 100%;
-  margin-left: 25%;
-  opacity: 75%;
+  margin-left: 45%;
   border-radius: 5px;
 }
 
 #repair {
   width: 100%;
-  margin-left: 25%;
-  opacity: 75%;
+  left: 45%;
   border-radius: 5px;
+  position: absolute;
 }
 
 #spro {
   margin-top: 5%;
   width: 100%;
-  margin-left: 25%;
-  opacity: 75%;
+  margin-left: 45%;
   border-radius: 5px;
 }
 
@@ -848,8 +855,8 @@ p {
 #binary {
   width: 60%;
   position: absolute;
-  top: 70%;
-  left: 10%;
+  top: 60%;
+  left: 15%;
   z-index: 1;
 }
 
