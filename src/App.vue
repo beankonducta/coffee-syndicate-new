@@ -3,189 +3,235 @@
     <div class="header-link" @click="scrollTo('#contact')">REQUEST SERVICE</div>
     <div id="top"></div>
     <div id="header">
-      <img :class="position[1] > 500 ? 'hide' : ''" :src="require('./assets/Coffee Syndicate Logo Full.svg')"
-        alt="Coffee Syndicate Logo" id="logo">
+      <img
+        :class="position[1] > 500 ? 'hide' : ''"
+        :src="require('./assets/Coffee Syndicate Logo Full.svg')"
+        alt="Coffee Syndicate Logo"
+        id="logo"
+      />
     </div>
-    <img src="./assets/bottom_water.svg" alt="water" id="water" :style="{ marginLeft: `calc(-100% + ${waterLeft}px)` }">
-
+    <img
+      src="./assets/bottom_water.svg"
+      alt="water"
+      id="water"
+      :style="{ marginLeft: `calc(-90% + ${waterLeft}px)` }"
+    />
+    <div
+      id="tooltip"
+      :style="{ top: `${mousePos.y}px`, left: `${mousePos.x}px` }"
+      v-if="toolTip.show"
+    >
+      <p>{{ toolTip.text }}</p>
+    </div>
     <div id="content">
-      <img :class="position[1] < 350 ? 'hide' : ''" :src="require('./assets/Coffee Syndicate Mark.svg')"
-        alt="Coffee Syndicate Mark" id="mark" @click="scrollTo('#top')">
-      <div id="scroll-progress-container" :style="{ height: scrollBarHeight }"></div>
+      <img
+        :class="position[1] < 350 ? 'hide' : ''"
+        :src="require('./assets/Coffee Syndicate Mark.svg')"
+        alt="Coffee Syndicate Mark"
+        id="mark"
+        @click="scrollTo('#top')"
+      />
+      <div
+        id="scroll-progress-container"
+        :style="{ height: scrollBarHeight }"
+      ></div>
       <div id="scroll-progress-fill"></div>
       <div class="block" id="about">
         <div class="inner-block-full">
           <h1 ref="about" id="about-header">ABOUT</h1>
           <p>
-            Coffee Syndicate is a Salt Lake City based coffee equipment sales and service company. We've been working on
-            equipment since 2015 and are
-            trained and certified by the manufacturers we represent. Additionally, from over a decade of running a coffee
-            business, we've developed custom
-            software solutions to lessen the amount of mundane tasks and data entry that eat away at the time that should
-            be spent growing and nurturing your business.
-            <br>
-            <br>
-            We offer a variety of equipment packages to fit your needs and budget, scheduled preventative maintenance
-            plans to keep your equipment running smoothly and
-            full rebuilds and repairs when things go wrong. We also develop software and websites to help you run your
-            business more efficiently.
+            Coffee Syndicate, based in Salt Lake City, specializes in coffee
+            equipment sales and services. Since 2015, we have been working on
+            equipment and are trained and certified by the manufacturers we
+            represent. Furthermore, our decade-long experience in running a
+            coffee business has led us to develop custom software solutions that
+            reduce mundane tasks and data entry, allowing you to focus on
+            growing and nurturing your business.
+            <br />
+            <br />
+            We offer a variety of equipment packages tailored to your needs and
+            budget, scheduled preventative maintenance plans to ensure your
+            equipment operates smoothly, and comprehensive rebuilds and repairs
+            when issues arise. Additionally, we develop software and websites to
+            help you manage your business more efficiently.
           </p>
+          <div class="spacer"></div>
         </div>
       </div>
       <div class="block" id="equipment">
         <div class="inner-block">
           <h1 ref="equipment" id="equipment-header">EQUIPMENT</h1>
+          <h2>ESPRESSO MACHINES, GRINDERS & BREWERS</h2>
           <p>
-            From espresso machines to drip brewers, grinders and beyond, we offer coffee equipment from top brands that
-            we've put to the test in our own coffee shops over the years.
-          </p>
-          <h2>ESPRESSO MACHINES</h2>
-          <p>
-          </p>
-          <h2>GRINDERS</h2>
-          <p>
-          </p>
-          <h2>BREWERS</h2>
-          <p>
-          </p>
-          <h2>ACCESSORIES</h2>
-          <p>
+            Explore our selection of espresso machines, grinders, and brewers
+            from renowned brands such as La Marzocco, Slayer, Synesso, Compak,
+            Mahlkonig, Fetco, Ground Control, and more. Enjoy free delivery from
+            our warehouse and complimentary installation with our full equipment
+            packages.
+            <br /><br />
+            Additionally, we offer fully rebuilt and cleaned used equipment,
+            complete with an in-house warranty on parts and labor.
           </p>
           <h2>WATER FILTRATION</h2>
           <p>
-            Water filtration is a critical component of any coffee equipment setup. We offer a variety of water
-            filtration options to fit your volumes.
-            <br>
-            <br>
-            Typically we recommend fairly robust filtration, especially with the hardness of Utah water, but each setup is
-            customized based on
-            the TDS (total dissolved solids) of your water and the volume of water you're using.
+            Water filtration is an essential aspect of any coffee equipment
+            setup. We provide a range of water filtration solutions designed to
+            accommodate your needs.
           </p>
+          <div class="spacer"></div>
         </div>
-        <div class="inner-block">
-          <div id="spro-container">
-            <img src="./assets/Equipment-01.svg" alt="Espresso Machine" id="e65">
-            <img src="./assets/Equipment-05.svg" alt="Gauge" id="gauge">
-          </div>
+        <div class="inner-block no-mobile">
+          <!-- <div id="spro-container"> -->
+          <img src="./assets/sean_ora.png" alt="Spro" id="spro" />
+          <!-- <img
+              src="./assets/Equipment-01.svg"
+              alt="Espresso Machine"
+              id="e65"
+            />
+            <img src="./assets/Equipment-05.svg" alt="Gauge" id="gauge" /> -->
+          <!-- </div> -->
         </div>
       </div>
       <div class="block" id="service">
         <div class="inner-block">
           <h1 ref="service" id="service-header">SERVICE</h1>
-          <p>
-            Using coffee equipment, and espresso machines specifically, is a lot like daily driving a car. No matter how
-            nice the build, you're
-            going to need repairs along the way. We offer a variety of services to keep your equipment running smoothly
-            and minimize downtime.
-          </p>
           <h2>PREVENTATIVE PLANS</h2>
           <div id="three-six-twelve">
-            <img src="./assets/Equipment-02.svg" alt="3" class="calendar bounce-1" @mouseenter="show(3)"
-              @mouseleave="hide()">
-            <img src="./assets/Equipment-03.svg" alt="6" class="calendar bounce-2" @mouseenter="show(6)"
-              @mouseleave="hide()">
-            <img src="./assets/Equipment-04.svg" alt="12" class="calendar bounce-3" @mouseenter="show(12)"
-              @mouseleave="hide()">
-            <!-- <div class="pm-panel" id="three" v-if="showVal === 3">
-              <h2>3 MONTHS</h2>
-              <p>Text</p>
-            </div>
-            <div class="pm-panel" id="six" v-if="showVal === 6">
-              <h2>3 MONTHS</h2>
-              <p>Text</p>
-            </div>
-            <div class="pm-panel" id="twelve" v-if="showVal === 12">
-              <h2>3 MONTHS</h2>
-              <p>Text</p>
-            </div> -->
+            <img
+              src="./assets/Equipment-02.svg"
+              alt="3"
+              class="calendar bounce-1"
+              @mouseenter="show(3)"
+              @mouseleave="hide()"
+            />
+            <img
+              src="./assets/Equipment-03.svg"
+              alt="6"
+              class="calendar bounce-2"
+              @mouseenter="show(6)"
+              @mouseleave="hide()"
+            />
+            <img
+              src="./assets/Equipment-04.svg"
+              alt="12"
+              class="calendar bounce-3"
+              @mouseenter="show(12)"
+              @mouseleave="hide()"
+            />
           </div>
           <p>
-            Preventative maintainance, akin to getting an oil change in your car, is the best way to keep your equipment
-            running well.
-            We offer 3, 6 and 12 month plans, which are typically following specific manufacturer recommendation, and
-            will extend the working
-            life of your equipment.
+            Preventative maintenance is the most effective way to keep your
+            equipment in optimal condition. We provide 3, 6, and 12-month plans,
+            which will prolong the lifespan of your equipment.
           </p>
           <h2>REPAIRS</h2>
           <p>
-            When things go wrong with your espresso machine, grinder, drip brewer or other coffee equipment, we're
-            available during business hours
-            to get you back up and running. We also offer emergency service off-hours and on weekends if catastrophe
-            strikes.
+            If issues arise with your coffee equipment, we are available during
+            regular business hours to get you back up and running. We also offer
+            emergency service outside of regular hours and on weekends in case
+            of urgent situations.
           </p>
           <h2>REBUILDS</h2>
           <p>
-            If your equipment is in need of a full rebuild, we can help. We've rebuilt countless espresso machines,
-            grinders, coffee roasters, drip brewers and other
-            coffee machines. All rebuilds come with a 90 day warranty on parts and labor.
+            Should your equipment require a complete rebuild, we are here to
+            help. We have extensive experience in rebuilding espresso machines,
+            grinders, coffee roasters, drip brewers, and other coffee machines.
+            All rebuilds come with our in-house warranty.
           </p>
+          <div class="spacer"></div>
         </div>
-        <div class="inner-block">
-          <img src="./assets/wrench-01.svg" alt="Wrench" class="icon" id="wrench">
-          <img src="./assets/wrench-03.svg" alt="Bolt" class="icon" id="bolt">
-          <img src="./assets/wrench-02.svg" alt="Working" class="icon" id="working">
+        <div class="inner-block no-mobile">
+          <div id="repair-container">
+            <img src="./assets/repair.png" alt="Repair" id="repair" />
+            <img
+              src="./assets/wrench-01.svg"
+              alt="Wrench"
+              class="icon"
+              id="wrench"
+            />
+            <img
+              src="./assets/wrench-03.svg"
+              alt="Bolt"
+              class="icon"
+              id="bolt"
+            />
+            <img
+              src="./assets/wrench-02.svg"
+              alt="Working"
+              class="icon"
+              id="working"
+            />
+          </div>
         </div>
       </div>
       <div class="block" id="software">
         <div class="inner-block">
           <h1 ref="software" id="software-header">SOFTWARE</h1>
+          <h2>APPS</h2>
           <p>
-            Over the years we've developed a variety of software solutions to help us run our coffee shops more
-            efficiently. Being a small business owner
-            means wearing a lot of hats and we've found ways to automate or minimize the amount of boring back office work
-            required to keep
-            things running.
-            <br>
-            <br>
-            We're also skilled in web development and can put in relatively minimal work to get your website out of
-            looking
-            like a template and into something that's on brand and stands out from the crowd.
-            <br>
-            <br>
-            Specific applications we've found useful include a tip tracking and distribution app, a highly detailed till
-            tracking app to make sure cash sales
-            are properly accounted for, custom wholesale ordering portals so you can control every detail of how your
-            customers order, pay and receive notifications
-            related to fulfillment, as well as a variety of Shopify and Square based services to eliminate the need for
-            manual data entry. We have some out of the box
-            offerings which can be put into action with minimal customization & we're always excited to come up with
-            something fully custom to tackle
-            whatever time sink you're dealing with.
+            Over the years, we have developed a variety of software solutions to
+            enhance the efficiency of our coffee shops. As a small business
+            owner, managing multiple responsibilities can be challenging, and we
+            have found ways to automate or minimize the amount of tedious
+            back-office work required to keep things running smoothly.
           </p>
+          <h2>WEBSITES</h2>
+          <p>
+            Our expertise also extends to web development, enabling us to
+            transform your website from a generic template to a unique, on-brand
+            design that stands out from the competition. Check out our portfolio
+            <a href="https://beankonducta.com" target="_blank">here</a>.
+          </p>
+          <div class="spacer"></div>
         </div>
-        <div class="inner-block">
-          <img src="./assets/software-05.svg" alt="Server" id="server">
-          <img src="./assets/software-04.svg" alt="Client" id="client">
+        <div class="inner-block no-mobile">
+          <!-- <img src="./assets/software-05.svg" alt="Server" id="server" />
+          <img src="./assets/software-04.svg" alt="Client" id="client" /> -->
           <div id="binary">
             <div class="binary-text">
-              <span v-for="(row, index) in binary[0]" :key="index">{{ row }}</span>
+              <span v-for="(row, index) in binary[0]" :key="index">{{
+                row
+              }}</span>
             </div>
             <div class="binary-text">
-              <span v-for="(row, index) in binary[1]" :key="index">{{ row }}</span>
+              <span v-for="(row, index) in binary[1]" :key="index">{{
+                row
+              }}</span>
             </div>
             <div class="binary-text">
-              <span v-for="(row, index) in binary[2]" :key="index">{{ row }}</span>
+              <span v-for="(row, index) in binary[2]" :key="index">{{
+                row
+              }}</span>
+            </div>
+            <div class="binary-text">
+              <span v-for="(row, index) in binary[3]" :key="index">{{
+                row
+              }}</span>
+            </div>
+            <div class="binary-text">
+              <span v-for="(row, index) in binary[4]" :key="index">{{
+                row
+              }}</span>
             </div>
           </div>
+          <img src="./assets/software.png" alt="Software" id="software-img" />
         </div>
       </div>
       <div class="block" id="contact">
-        <div class="inner-block">
+        <div class="inner-block-form">
           <h1 ref="contact" id="contact-header">CONTACT</h1>
           <p>
-            If you need service, are interested in talking equipment packages or would like to know more about the custom
-            software solutions we've developed for small businesses, please contact us using this form. All inquiries will
-            receive response within a business day.
+            If you need service, are interested in talking equipment packages or
+            would like to know more about the custom software solutions we've
+            developed for small businesses, please contact us using this form.
+            All inquiries will receive response within a business day.
           </p>
           <FormComponent />
-        </div>
-        <div class="inner-block">
-
         </div>
       </div>
     </div>
     <div id="footer">
-      <p>© 2020 Coffee Syndicate</p>
+      <p>© {{ currentYear }} Coffee Syndicate</p>
     </div>
   </div>
 </template>
@@ -201,9 +247,13 @@ export default {
     FormComponent,
   },
   mounted() {
-    const rows = 3;
+    const rows = 5;
     const cols = 24;
-    this.binary = new Array(rows).fill(null).map(() => new Array(cols).fill(null).map(() => Math.round(Math.random())));
+    this.binary = new Array(rows)
+      .fill(null)
+      .map(() =>
+        new Array(cols).fill(null).map(() => Math.round(Math.random()))
+      );
     setInterval(() => {
       for (let l = 0; l < rows; l++) {
         this.binary[l].unshift(this.binary[l].pop());
@@ -215,8 +265,16 @@ export default {
     height() {
       return document.documentElement.clientHeight;
     },
+    currentYear() {
+      return new Date().getFullYear();
+    },
     scrollBarHeight() {
-      return (this.position[1] / (document.documentElement.scrollHeight - this.height)) * 100 + "%";
+      return (
+        (this.position[1] /
+          (document.documentElement.scrollHeight - this.height)) *
+          100 +
+        "%"
+      );
     },
   },
   data() {
@@ -230,13 +288,13 @@ export default {
       },
       toolTip: {
         show: false,
-        text: ""
+        text: "",
       },
       aboutHeader: false,
       equipmentHeader: false,
       serviceHeader: false,
       softwareHeader: false,
-      contactHeader: false
+      contactHeader: false,
     };
   },
   methods: {
@@ -268,7 +326,7 @@ export default {
     observeHeader() {
       const options = {
         root: null,
-        rootMargin: '0px',
+        rootMargin: "0px",
         threshold: 1.0,
       };
 
@@ -326,20 +384,19 @@ export default {
         x: event.pageX,
         y: event.pageY,
       };
-      console.log(this.mousePos)
     },
     showToolTip(text) {
       this.toolTip = {
         show: true,
-        text
-      }
+        text,
+      };
     },
     hideToolTip() {
       this.toolTip = {
         show: false,
-        text: ""
-      }
-    }
+        text: "",
+      };
+    },
   },
   watch: {
     position(val) {
@@ -368,6 +425,17 @@ body {
   min-height: 80vh;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 h1,
 h2,
 h3,
@@ -388,8 +456,13 @@ h2 {
   letter-spacing: 0.2em;
 }
 
+a {
+  color: #d15e14;
+  text-decoration: none;
+}
+
 p {
-  font-size: calc(0.5rem + .5vw);
+  font-size: calc(0.5rem + 0.5vw);
   line-height: 1.5;
   font-family: "Prompt", sans-serif;
   color: #002b49;
@@ -397,6 +470,8 @@ p {
 
 #footer p {
   color: white;
+  font-family: "Manufaktur", sans-serif;
+  text-transform: uppercase;
 }
 
 #app {
@@ -413,8 +488,17 @@ p {
   top: 0;
 }
 
+#tooltip {
+  position: absolute;
+  background: #d15e14;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
 .header-link {
-  font-size: calc(0.5rem + .5vw);
+  font-size: calc(0.5rem + 0.5vw);
   color: white;
   cursor: pointer;
   margin: 5px;
@@ -457,23 +541,77 @@ p {
 }
 
 #content {
-  background: white;
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
   position: relative;
   overflow: hidden;
 }
-
+ 
 .block {
   width: calc(100% - 230px);
   margin-left: 115px;
   margin-top: 5%;
   margin-bottom: 5%;
   display: flex;
-  flex-direction: row;
 }
 
-.inner-block {
-  position: relative;
-  width: 50%;
+@media only screen and (min-width: 1300px) and (max-width: 1500px) {
+  .inner-block-form {
+    position: relative;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1500px) and (max-width: 1700px) {
+  .inner-block-form {
+    position: relative;
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .inner-block-form {
+    position: relative;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .inner-block-form {
+    position: relative;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .block {
+    flex-direction: column;
+  }
+  .inner-block {
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+  }
+  .no-mobile {
+    display: none;
+  }
+
+  .block img {
+    width: 80px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .block {
+    flex-direction: row;
+  }
+  .inner-block {
+    position: relative;
+    width: 50%;
+  }
+  .spacer {
+    height: 100px;
+  }
 }
 
 .inner-block-full {
@@ -509,9 +647,8 @@ p {
 }
 
 #water {
-  margin-bottom: -100px;
+  margin-bottom: -10px;
   width: 200%;
-  
 }
 
 .icon {
@@ -521,23 +658,23 @@ p {
 
 #wrench {
   position: absolute;
-  top: 25%;
-  left: 10%;
+  top: 45%;
+  left: -10%;
   animation: rotate-45-back 2s ease-in-out infinite;
   z-index: 2;
 }
 
 #bolt {
   position: absolute;
-  top: 25%;
-  left: 10%;
+  top: 45%;
+  left: -10%;
   animation: rotate-45-bolt 2s ease-in-out infinite;
 }
 
 #working {
   position: absolute;
-  top: 25%;
-  left: 10%;
+  top: 45%;
+  left: -10%;
   animation: rotate-infinite 10s linear infinite;
 }
 
@@ -546,6 +683,34 @@ p {
   top: 25%;
   left: 35%;
   width: 50%;
+}
+
+#repair-container {
+  height: 100%;
+  position: relative;
+  margin-top: 5%;
+}
+
+#software-img {
+  width: 100%;
+  margin-left: 25%;
+  opacity: 75%;
+  border-radius: 5px;
+}
+
+#repair {
+  width: 100%;
+  margin-left: 25%;
+  opacity: 75%;
+  border-radius: 5px;
+}
+
+#spro {
+  margin-top: 5%;
+  width: 100%;
+  margin-left: 25%;
+  opacity: 75%;
+  border-radius: 5px;
 }
 
 #e65 {
@@ -683,14 +848,14 @@ p {
 #binary {
   width: 60%;
   position: absolute;
-  top: 35%;
-  left: 25%;
+  top: 70%;
+  left: 10%;
   z-index: 1;
 }
 
 .binary-text {
   font-family: "Prompt", sans-serif;
-  font-size: 1em;
+  font-size: calc(0.8rem + 3%);
   color: #d15e14;
   display: flex;
   justify-content: space-between;
@@ -914,4 +1079,5 @@ p {
   100% {
     transform: translateY(0px);
   }
-}</style>
+}
+</style>
