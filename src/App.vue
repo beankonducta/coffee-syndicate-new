@@ -557,7 +557,7 @@ p {
   display: flex;
 }
 
-@media only screen and (min-width: 1300px) and (max-width: 1500px) {
+@media only screen and (min-width: 1400px) and (max-width: 1500px) {
   .inner-block-form {
     position: relative;
     width: 50%;
@@ -578,14 +578,14 @@ p {
   }
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1400px) {
   .inner-block-form {
     position: relative;
     width: 100%;
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1300px) {
   .block {
     flex-direction: column;
   }
@@ -603,7 +603,7 @@ p {
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1300px) {
   .block {
     flex-direction: row;
   }
