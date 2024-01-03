@@ -662,6 +662,7 @@ p {
   position: absolute;
   top: 35%;
   left: 0%;
+  width: 50%;
 }
 
 #wrench {
