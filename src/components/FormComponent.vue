@@ -229,6 +229,7 @@ select {
   font-size: 1rem;
   font-family: "Prompt", sans-serif;
   color: #002b49;
+  background: white;
 }
 
 textarea {
