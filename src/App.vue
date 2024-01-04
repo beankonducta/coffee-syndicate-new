@@ -448,17 +448,6 @@ h6 {
   font-family: "Manufaktur", sans-serif;
 }
 
-h1 {
-  font-size: calc(1rem + 1vw);
-  color: #d15e14;
-}
-
-h2 {
-  font-size: calc(0.1rem + 1vw);
-  color: #d15e14;
-  letter-spacing: 0.2em;
-}
-
 a {
   color: #d15e14;
   text-decoration: none;
@@ -630,6 +619,15 @@ p {
     width: 10%;
     padding: 0px;
   }
+  h1 {
+    font-size: calc(1.2rem + 1vw);
+    color: #d15e14;
+  }
+  h2 {
+    font-size: calc(0.4rem + 1vw);
+    color: #d15e14;
+    letter-spacing: 0.2em;
+  }
 }
 
 @media screen and (min-width: 1300px) {
@@ -669,6 +667,15 @@ p {
   .calendar {
     width: 15%;
     padding: 20px;
+  }
+  h1 {
+    font-size: calc(1rem + 1vw);
+    color: #d15e14;
+  }
+  h2 {
+    font-size: calc(0.1rem + 1vw);
+    color: #d15e14;
+    letter-spacing: 0.2em;
   }
 }
 
