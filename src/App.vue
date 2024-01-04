@@ -528,7 +528,7 @@ p {
 }
 
 #mark:hover {
-  opacity: 80%;
+  scale: .9;
 }
 
 #content {
