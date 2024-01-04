@@ -141,7 +141,7 @@
           </p>
           <div class="spacer"></div>
         </div>
-        <div class="inner-blocke">
+        <div class="inner-block">
           <div id="repair-container">
             <img src="./assets/repair.png" alt="Repair" id="repair" />
             <div id="wrench-container" class="no-mobile">
