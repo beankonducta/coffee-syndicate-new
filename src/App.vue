@@ -626,6 +626,10 @@ p {
     left: 0%;
     border-radius: 5px;
   }
+  .calendar {
+    width: 10%;
+    padding: 0px;
+  }
 }
 
 @media screen and (min-width: 1300px) {
@@ -661,6 +665,10 @@ p {
     left: 45%;
     border-radius: 5px;
     position: absolute;
+  }
+  .calendar {
+    width: 15%;
+    padding: 20px;
   }
 }
 
@@ -853,11 +861,6 @@ p {
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.calendar {
-  width: 15%;
-  padding: 20px;
 }
 
 .hide {
