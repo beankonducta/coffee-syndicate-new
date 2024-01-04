@@ -141,29 +141,29 @@
           </p>
           <div class="spacer"></div>
         </div>
-        <div class="inner-block no-mobile">
+        <div class="inner-blocke">
           <div id="repair-container">
             <img src="./assets/repair.png" alt="Repair" id="repair" />
-            <div id="wrench-container">
-            <img
-              src="./assets/wrench-01.svg"
-              alt="Wrench"
-              class="icon"
-              id="wrench"
-            />
-            <img
-              src="./assets/wrench-03.svg"
-              alt="Bolt"
-              class="icon"
-              id="bolt"
-            />
-            <img
-              src="./assets/wrench-02.svg"
-              alt="Working"
-              class="icon"
-              id="working"
-            />
-            </div>  
+            <div id="wrench-container" class="no-mobile">
+              <img
+                src="./assets/wrench-01.svg"
+                alt="Wrench"
+                class="icon"
+                id="wrench"
+              />
+              <img
+                src="./assets/wrench-03.svg"
+                alt="Bolt"
+                class="icon"
+                id="bolt"
+              />
+              <img
+                src="./assets/wrench-02.svg"
+                alt="Working"
+                class="icon"
+                id="working"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -187,10 +187,10 @@
           </p>
           <div class="spacer"></div>
         </div>
-        <div class="inner-block no-mobile">
+        <div class="inner-block">
           <!-- <img src="./assets/software-05.svg" alt="Server" id="server" />
           <img src="./assets/software-04.svg" alt="Client" id="client" /> -->
-          <div id="binary">
+          <div id="binary" class="no-mobile">
             <div class="binary-text">
               <span v-for="(row, index) in binary[0]" :key="index">{{
                 row
@@ -548,7 +548,7 @@ p {
   position: relative;
   overflow: hidden;
 }
- 
+
 .block {
   margin-top: 5%;
   margin-bottom: 5%;
@@ -606,14 +606,34 @@ p {
     position: absolute;
     z-index: 0;
   }
+
+  .spacer {
+    height: 10px;
+  }
+  #spro {
+    margin-top: 5%;
+    width: 100%;
+    margin-left: 0%;
+    border-radius: 5px;
+  }
+  #software-img {
+    width: 100%;
+    margin-left: 0%;
+    border-radius: 5px;
+  }
+  #repair {
+    width: 100%;
+    left: 0%;
+    border-radius: 5px;
+  }
 }
 
 @media screen and (min-width: 1300px) {
   .block {
     flex-direction: row;
     width: calc(100% - 230px);
-  margin-left: 115px;
-  text-align: justify;
+    margin-left: 115px;
+    text-align: justify;
   }
   .inner-block {
     position: relative;
@@ -623,6 +643,23 @@ p {
     height: 100px;
   }
   #header #logo {
+    position: absolute;
+  }
+  #spro {
+    margin-top: 5%;
+    width: 100%;
+    margin-left: 45%;
+    border-radius: 5px;
+  }
+  #software-img {
+    width: 100%;
+    margin-left: 45%;
+    border-radius: 5px;
+  }
+  #repair {
+    width: 100%;
+    left: 45%;
+    border-radius: 5px;
     position: absolute;
   }
 }
@@ -678,7 +715,7 @@ p {
 
 #wrench {
   width: 100%;
-  position:absolute;
+  position: absolute;
   top: 0;
   left: 0;
   animation: rotate-45-back 2s ease-in-out infinite;
@@ -687,7 +724,7 @@ p {
 
 #bolt {
   width: 100%;
-  position:absolute;
+  position: absolute;
   top: 0;
   left: 0;
   animation: rotate-45-bolt 2s ease-in-out infinite;
@@ -695,7 +732,6 @@ p {
 
 #working {
   width: 100%;
-
   animation: rotate-infinite 10s linear infinite;
 }
 
@@ -710,26 +746,6 @@ p {
   height: 100%;
   position: relative;
   margin-top: 5%;
-}
-
-#software-img {
-  width: 100%;
-  margin-left: 45%;
-  border-radius: 5px;
-}
-
-#repair {
-  width: 100%;
-  left: 45%;
-  border-radius: 5px;
-  position: absolute;
-}
-
-#spro {
-  margin-top: 5%;
-  width: 100%;
-  margin-left: 45%;
-  border-radius: 5px;
 }
 
 #e65 {
