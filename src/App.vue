@@ -25,7 +25,7 @@
     </div>
     <div id="content">
       <img
-        :class="position[1] < 350 ? 'hide' : ''"
+        :class="position[1] < 350 ? 'hide no-mobile' : 'no-mobile'"
         :src="require('./assets/Coffee Syndicate Mark.svg')"
         alt="Coffee Syndicate Mark"
         id="mark"
@@ -34,8 +34,9 @@
       <div
         id="scroll-progress-container"
         :style="{ height: scrollBarHeight }"
+        class="no-mobile"
       ></div>
-      <div id="scroll-progress-fill"></div>
+      <div id="scroll-progress-fill no-mobile"></div>
       <div class="block" id="about">
         <div class="inner-block-full">
           <h1 ref="about" id="about-header">ABOUT</h1>
@@ -80,7 +81,7 @@
           </p>
           <div class="spacer"></div>
         </div>
-        <div class="inner-block no-mobile">
+        <div class="inner-block">
           <!-- <div id="spro-container"> -->
           <img src="./assets/sean_ora.png" alt="Spro" id="spro" />
           <!-- <img
@@ -525,7 +526,6 @@ p {
 #header #logo {
   height: 300px;
   top: 15px;
-  position: absolute;
   left: calc(50% - 150px);
 }
 
@@ -550,8 +550,6 @@ p {
 }
  
 .block {
-  width: calc(100% - 230px);
-  margin-left: 115px;
   margin-top: 5%;
   margin-bottom: 5%;
   display: flex;
@@ -588,6 +586,9 @@ p {
 @media screen and (max-width: 1300px) {
   .block {
     flex-direction: column;
+    width: calc(100% - 100px);
+    margin-left: 50px;
+    text-align: justify;
   }
   .inner-block {
     position: relative;
@@ -601,11 +602,18 @@ p {
   .block img {
     width: 80px;
   }
+  #header #logo {
+    position: absolute;
+    z-index: 0;
+  }
 }
 
 @media screen and (min-width: 1300px) {
   .block {
     flex-direction: row;
+    width: calc(100% - 230px);
+  margin-left: 115px;
+  text-align: justify;
   }
   .inner-block {
     position: relative;
@@ -613,6 +621,9 @@ p {
   }
   .spacer {
     height: 100px;
+  }
+  #header #logo {
+    position: absolute;
   }
 }
 
