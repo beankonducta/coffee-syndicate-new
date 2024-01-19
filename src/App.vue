@@ -8,7 +8,6 @@
         :src="require('./assets/Coffee Syndicate Logo Full.svg')"
         alt="Coffee Syndicate Logo"
         id="logo"
-        :style="{opacity: 175 - position[1] / 2 + '%'}"
       />
     </div>
     <img
@@ -537,6 +536,7 @@ p {
   background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
   position: relative;
   overflow: hidden;
+  z-index: 99;
 }
 
 .block {
@@ -780,6 +780,10 @@ p {
   position: absolute;
   top: 0px;
   left: 0px;
+}
+
+#content p {
+  z-index: 100;
 }
 
 @keyframes gauge-rotate {
