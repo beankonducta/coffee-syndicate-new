@@ -8,7 +8,7 @@
         :src="require('./assets/Coffee Syndicate Logo Full.svg')"
         alt="Coffee Syndicate Logo"
         id="logo"
-        :style="{opacity: position[1] / 2 + '%'}"
+        :style="{opacity: (isMobile ? 150 : 250) - position[1] / 2 + '%'}"
       />
     </div>
     <img
