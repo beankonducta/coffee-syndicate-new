@@ -8,7 +8,7 @@
         :src="require('./assets/Coffee Syndicate Logo Full.svg')"
         alt="Coffee Syndicate Logo"
         id="logo"
-        :style="{opacity: (isMobile ? 150 : 250) - position[1] / 2 + '%'}"
+        :style="{opacity: 175 - position[1] / 2 + '%'}"
       />
     </div>
     <img
@@ -302,11 +302,6 @@ export default {
     };
   },
   methods: {
-    isMobile() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
-    },
     // submit() {
     //   try {
     //     emailjs.send(
