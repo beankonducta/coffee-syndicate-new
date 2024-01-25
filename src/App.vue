@@ -42,7 +42,7 @@
           <h1 ref="about" id="about-header">ABOUT</h1>
           <p>
             Coffee Syndicate, based in Salt Lake City, specializes in coffee
-            equipment sales and services. Since 2015, we have been working on
+            equipment sales and services. Since 2017, we have been working on
             equipment and are trained and certified by the manufacturers we
             represent. Furthermore, our decade-long experience in running a
             coffee business has led us to develop custom software solutions that
