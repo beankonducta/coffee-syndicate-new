@@ -134,10 +134,14 @@ export default {
           "service_ckmnldo",
           "template_77rlqvc",
           {
-            data
+            message: data,
           },
           "ypG0JnGXYmHsx5aIm"
-        );
+        ).then((response) => {
+          console.log('SUCCESS!', response.status, response.text);
+        }, (error) => {
+          console.log('FAILED...', error);
+        });
         this.submitted = true;
       } catch (error) {
         console.log({ error });
@@ -151,7 +155,7 @@ export default {
       return regex.test(this.email);
     },
     validPhone() {
-      const regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+      const regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$|^\d{10}$/;
       return regex.test(this.phone);
     },
     validName() {
