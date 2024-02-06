@@ -65,8 +65,7 @@
           <h2>ESPRESSO MACHINES, GRINDERS & BREWERS</h2>
           <p>
             Explore our selection of espresso machines, grinders, and brewers
-            from renowned brands such as La Marzocco, Slayer, Synesso, Compak,
-            Mahlkonig, Fetco, Ground Control, and more. Enjoy free delivery from
+            from renowned brands such as <a v-for="brand of brands" :key="brand.name" :href="brand.href" target="_blank">{{ brand.name }}, </a> and more. Enjoy free delivery from
             our warehouse and complimentary installation with our full equipment
             packages.
             <br /><br />
@@ -134,8 +133,8 @@
           </p>
           <h2>REBUILDS</h2>
           <p>
-            Should your equipment require a complete rebuild, we are here to
-            help. We have extensive experience in rebuilding espresso machines,
+            If your equipment is in need of a full rebuild we're more than happy
+            to help. We have extensive experience in rebuilding espresso machines,
             grinders, coffee roasters, drip brewers, and other coffee machines.
             All rebuilds come with our in-house warranty.
           </p>
@@ -178,13 +177,17 @@
             have found ways to automate or minimize the amount of tedious
             back-office work required to keep things running smoothly.
           </p>
-          <h2>WEBSITES</h2>
+          <p>
+            Most of our work has been in the retail coffee space, please reach
+            out to us to see what we've created.
+          </p>
+          <!-- <h2>WEBSITES</h2>
           <p>
             Our expertise also extends to web development, enabling us to
             transform your website from a generic template to a unique, on-brand
             design that stands out from the competition. Check out our portfolio
             <a href="https://beankonducta.com" target="_blank">here</a>.
-          </p>
+          </p> -->
           <div class="spacer"></div>
         </div>
         <div class="inner-block">
@@ -298,6 +301,16 @@ export default {
       serviceHeader: false,
       softwareHeader: false,
       contactHeader: false,
+      brands: [
+        {name: "La Marzocco", href: "https://www.lamarzoccousa.com/"},
+        {name: "Synesso", href: "https://synesso.com/"},
+        {name: "Slayer", href: "https://slayerespresso.com/"},
+        {name: "Mahlkoenig", href: "https://www.mahlkoenig.com/"},
+        {name: "Compak", href: "https://www.compakgrinders.com/"},
+        {name: "Ground Control", href: "https://www.groundcontrol.coffee/"},
+        {name: "Fetco", href: "https://www.fetco.com/"},
+
+      ]
     };
   },
   methods: {
