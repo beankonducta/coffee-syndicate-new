@@ -305,7 +305,7 @@ export default {
         {name: "La Marzocco", href: "https://www.lamarzoccousa.com/"},
         {name: "Synesso", href: "https://synesso.com/"},
         {name: "Slayer", href: "https://slayerespresso.com/"},
-        {name: "Mahlkoenig", href: "https://www.mahlkoenig.com/"},
+        {name: "Mahlkonig", href: "https://www.mahlkoenig.com/"},
         {name: "Compak", href: "https://www.compakgrinders.com/"},
         {name: "Ground Control", href: "https://www.groundcontrol.coffee/"},
         {name: "Fetco", href: "https://www.fetco.com/"},
