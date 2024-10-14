@@ -44,17 +44,12 @@
             Coffee Syndicate, based in Salt Lake City, specializes in coffee
             equipment sales and services. Since 2017, we have been working on
             equipment and are trained and certified by the manufacturers we
-            represent. Furthermore, our decade-long experience in running a
-            coffee business has led us to develop custom software solutions that
-            reduce mundane tasks and data entry, allowing you to focus on
-            growing and nurturing your business.
+            represent.
             <br />
             <br />
             We offer a variety of equipment packages tailored to your needs and
             budget, scheduled preventative maintenance plans to ensure your
-            equipment operates smoothly, and comprehensive rebuilds and repairs
-            when issues arise. Additionally, we develop software and websites to
-            help you manage your business more efficiently.
+            equipment operates smoothly, and comprehensive rebuilds and repairs.
           </p>
           <div class="spacer"></div>
         </div>
@@ -164,63 +159,6 @@
               />
             </div>
           </div>
-        </div>
-      </div>
-      <div class="block" id="software">
-        <div class="inner-block">
-          <h1 ref="software" id="software-header">SOFTWARE</h1>
-          <h2>APPS</h2>
-          <p>
-            Over the years, we have developed a variety of software solutions to
-            enhance the efficiency of our coffee shops. As a small business
-            owner, managing multiple responsibilities can be challenging, and we
-            have found ways to automate or minimize the amount of tedious
-            back-office work required to keep things running smoothly.
-          </p>
-          <p>
-            Most of our work has been in the retail coffee space, please reach
-            out to us to see what we've created.
-          </p>
-          <!-- <h2>WEBSITES</h2>
-          <p>
-            Our expertise also extends to web development, enabling us to
-            transform your website from a generic template to a unique, on-brand
-            design that stands out from the competition. Check out our portfolio
-            <a href="https://beankonducta.com" target="_blank">here</a>.
-          </p> -->
-          <div class="spacer"></div>
-        </div>
-        <div class="inner-block">
-          <!-- <img src="./assets/software-05.svg" alt="Server" id="server" />
-          <img src="./assets/software-04.svg" alt="Client" id="client" /> -->
-          <div id="binary" class="no-mobile">
-            <div class="binary-text">
-              <span v-for="(row, index) in binary[0]" :key="index">{{
-                row
-              }}</span>
-            </div>
-            <div class="binary-text">
-              <span v-for="(row, index) in binary[1]" :key="index">{{
-                row
-              }}</span>
-            </div>
-            <div class="binary-text">
-              <span v-for="(row, index) in binary[2]" :key="index">{{
-                row
-              }}</span>
-            </div>
-            <div class="binary-text">
-              <span v-for="(row, index) in binary[3]" :key="index">{{
-                row
-              }}</span>
-            </div>
-            <div class="binary-text">
-              <span v-for="(row, index) in binary[4]" :key="index">{{
-                row
-              }}</span>
-            </div>
-          </div>
-          <img src="./assets/software.png" alt="Software" id="software-img" />
         </div>
       </div>
       <div class="block" id="contact">
