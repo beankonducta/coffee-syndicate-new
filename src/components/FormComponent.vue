@@ -26,7 +26,6 @@
         <select id="service" v-model="service">
           <option value="1">Equipment Purchase</option>
           <option value="2">Service / Maintenance</option>
-          <option value="3">Software / Website</option>
           <option value="4">Other</option>
         </select>
       </div>
@@ -190,6 +189,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .field-block {
@@ -198,6 +198,11 @@ export default {
   width: 100%;
   margin-right: 10px;
   margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.field-block:hover:not(:has(button:disabled)) {
+  transform: translateY(-2px);
 }
 
 .third {
@@ -219,9 +224,14 @@ export default {
 label {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-family: "Prompt", sans-serif;
   color: #002b49;
+  transition: color 0.3s ease;
+}
+
+.field-block:hover label {
+  color: #004d80;
 }
 
 input,
@@ -234,6 +244,17 @@ select {
   font-family: "Prompt", sans-serif;
   color: #002b49;
   background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 43, 73, 0.1);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #002b49;
+  outline: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 43, 73, 0.2);
 }
 
 textarea {
@@ -273,6 +294,18 @@ select:focus {
 .submitted {
   height: 300px;
   width: 100%;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 button {
@@ -280,22 +313,39 @@ button {
   color: #fff;
   border: 1px solid #002b49;
   border-radius: 5px;
-  padding: 10px;
+  padding: 10px 20px;
   font-size: 1rem;
   font-family: "Prompt", sans-serif;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background-color: #fff;
   color: #002b49;
   border: 1px solid #002b49;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 43, 73, 0.2);
 }
 
-button:active {
-  background-color: #fff;
+button:disabled {
+  background-color: #f5f5f5;
   color: #002b49;
   border: 1px solid #002b49;
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+button:disabled:hover {
+  transform: none !important;
+  transition: none !important;
+  box-shadow: none !important;
+  background-color: #f5f5f5 !important;
+  color: #002b49 !important;
+  border: 1px solid #002b49 !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -344,35 +394,35 @@ button:active {
   }
 }
 
-button:disabled {
-  background-color: #fff;
-  color: #002b49;
-  border: 1px solid #002b49;
-  cursor: not-allowed;
-  opacity: 0.1;
+.field-block:has(input:disabled),
+.field-block:has(select:disabled),
+.field-block:has(textarea:disabled) {
+  transform: none !important;
+  transition: none !important;
+  opacity: 0.5;
 }
 
-input:disabled {
-  background-color: #fff;
-  color: #002b49;
-  border: 1px solid #002b49;
-  opacity: 0.1;
-  cursor: not-allowed;
+.field-block:has(input:disabled):hover,
+.field-block:has(select:disabled):hover,
+.field-block:has(textarea:disabled):hover {
+  transform: none !important;
 }
 
-textarea:disabled {
-  background-color: #fff;
+.field-block:has(input:disabled) label,
+.field-block:has(select:disabled) label,
+.field-block:has(textarea:disabled) label {
   color: #002b49;
-  border: 1px solid #002b49;
-  opacity: 0.1;
-  cursor: not-allowed;
+  opacity: 0.5;
+  transition: none;
 }
 
-select:disabled {
-  background-color: #fff;
-  color: #002b49;
-  border: 1px solid #002b49;
-  opacity: 0.1;
-  cursor: not-allowed;
+.field-block:has(button:disabled) {
+  transform: none !important;
+  transition: none !important;
 }
+
+.field-block:has(button:disabled):hover {
+  transform: none !important;
+}
+
 </style>
