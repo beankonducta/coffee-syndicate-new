@@ -17,7 +17,7 @@
       </div>
       <div class="field-block half">
         <label for="phone">Phone</label>
-        <input type="tel" id="phone" v-model="phone" />
+        <input type="tel" id="phone" :value="formattedPhone" @input="formatPhoneNumber($event)" />
       </div>
     </div>
     <div class="form-block" v-if="!submitted">
@@ -115,6 +115,25 @@ export default {
     };
   },
   methods: {
+    formatPhoneNumber(event) {
+      // Remove all non-numeric characters
+      let cleaned = event.target.value.replace(/\D/g, '');
+      
+      // Trim to 10 digits
+      cleaned = cleaned.substring(0, 10);
+      
+      // Add dots if we have enough numbers
+      let formatted = cleaned;
+      if (cleaned.length >= 4) {
+        formatted = cleaned.slice(0, 3) + '.' + cleaned.slice(3);
+      }
+      if (cleaned.length >= 7) {
+        formatted = formatted.slice(0, 7) + '.' + formatted.slice(7);
+      }
+      
+      this.phone = cleaned; // Store raw number for validation
+      event.target.value = formatted; // Display formatted number
+    },
     submitForm() {
       try {
         const data = JSON.stringify({
@@ -154,8 +173,7 @@ export default {
       return regex.test(this.email);
     },
     validPhone() {
-      const regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$|^\d{10}$/;
-      return regex.test(this.phone);
+      return this.phone.length === 10;
     },
     validName() {
       return this.name.length > 2;
@@ -170,6 +188,19 @@ export default {
         !this.validName ||
         !this.validMessage
       );
+    },
+    formattedPhone() {
+      // Format the stored phone number for display
+      if (!this.phone) return '';
+      
+      let formatted = this.phone;
+      if (this.phone.length >= 4) {
+        formatted = formatted.slice(0, 3) + '.' + formatted.slice(3);
+      }
+      if (this.phone.length >= 7) {
+        formatted = formatted.slice(0, 7) + '.' + formatted.slice(7);
+      }
+      return formatted;
     },
   },
 };
