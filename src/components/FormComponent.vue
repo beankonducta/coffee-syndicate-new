@@ -23,40 +23,52 @@
     <div class="form-block" v-if="!submitted">
       <div class="field-block half">
         <label for="service">How can we help?</label>
-        <select id="service" v-model="service">
-          <option value="1">Equipment Purchase</option>
-          <option value="2">Service / Maintenance</option>
-          <option value="4">Other</option>
-        </select>
+        <div class="custom-select" @click="toggleDropdown('service')">
+          <div class="selected">{{ getServiceLabel }}</div>
+          <div class="dropdown" v-if="activeDropdown === 'service'">
+            <div class="option" @click="service = '1'">Equipment Purchase</div>
+            <div class="option" @click="service = '2'">Service / Maintenance</div>
+            <div class="option" @click="service = '4'">Other</div>
+          </div>
+        </div>
       </div>
       <div class="field-block half" v-if="service == 1">
         <label for="type">Type</label>
-        <select id="type" v-model="type">
-          <option value="New">New</option>
-          <option value="Used">Used</option>
-        </select>
+        <div class="custom-select" @click="toggleDropdown('type')">
+          <div class="selected">{{ getTypeLabel }}</div>
+          <div class="dropdown" v-if="activeDropdown === 'type'">
+            <div class="option" @click="type = 'New'">New</div>
+            <div class="option" @click="type = 'Used'">Used</div>
+          </div>
+        </div>
       </div>
       <div class="field-block half" v-if="service == 2">
         <label for="type">Type</label>
-        <select id="equip-type" v-model="equipType">
-          <option value="Espresso machine">Espresso machine</option>
-          <option value="Grinder">Grinder</option>
-          <option value="Brewer">Brewer</option>
-          <option value="Coffee roaster">Coffee roaster</option>
-          <option value="Other">Other</option>
-        </select>
+        <div class="custom-select" @click="toggleDropdown('equipType')">
+          <div class="selected">{{ getEquipTypeLabel }}</div>
+          <div class="dropdown" v-if="activeDropdown === 'equipType'">
+            <div class="option" @click="equipType = 'Espresso machine'">Espresso machine</div>
+            <div class="option" @click="equipType = 'Grinder'">Grinder</div>
+            <div class="option" @click="equipType = 'Brewer'">Brewer</div>
+            <div class="option" @click="equipType = 'Coffee roaster'">Coffee roaster</div>
+            <div class="option" @click="equipType = 'Other'">Other</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-block" v-if="!submitted">
       <div class="field-block half" v-if="service == 1">
         <label for="equipment">What equipment?</label>
-        <select id="equipment" v-model="equipment" :disabled="type == ''">
-          <option value="Espresso machine">Espresso machine</option>
-          <option value="Grinder">Grinder</option>
-          <option value="Brewer">Brewer</option>
-          <option value="Full package">Full package</option>
-          <option value="Other">Other</option>
-        </select>
+        <div class="custom-select" @click="toggleDropdown('equipment')" :class="{ disabled: type === '' }">
+          <div class="selected">{{ getEquipmentLabel }}</div>
+          <div class="dropdown" v-if="activeDropdown === 'equipment' && type !== ''">
+            <div class="option" @click="equipment = 'Espresso machine'">Espresso machine</div>
+            <div class="option" @click="equipment = 'Grinder'">Grinder</div>
+            <div class="option" @click="equipment = 'Brewer'">Brewer</div>
+            <div class="option" @click="equipment = 'Full package'">Full package</div>
+            <div class="option" @click="equipment = 'Other'">Other</div>
+          </div>
+        </div>
       </div>
       <div class="field-block half" v-if="service == 1">
         <label for="brands">Brands</label>
@@ -112,6 +124,7 @@ export default {
       phone: "",
       message: "",
       submitted: false,
+      activeDropdown: null,
     };
   },
   methods: {
@@ -166,6 +179,9 @@ export default {
         return;
       }
     },
+    toggleDropdown(dropdown) {
+      this.activeDropdown = this.activeDropdown === dropdown ? null : dropdown;
+    },
   },
   computed: {
     validEmail() {
@@ -202,6 +218,31 @@ export default {
       }
       return formatted;
     },
+    getServiceLabel() {
+      const options = {
+        '1': 'Equipment Purchase',
+        '2': 'Service / Maintenance',
+        '4': 'Other'
+      };
+      return options[this.service] || 'Select an option';
+    },
+    getTypeLabel() {
+      return this.type || 'Select type';
+    },
+    getEquipTypeLabel() {
+      return this.equipType || 'Select equipment type';
+    },
+    getEquipmentLabel() {
+      return this.equipment || 'Select equipment';
+    },
+  },
+  mounted() {
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.custom-select')) {
+        this.activeDropdown = null;
+      }
+    });
   },
 };
 </script>
@@ -221,6 +262,12 @@ export default {
   align-items: center;
   margin-bottom: 10px;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.form-block:hover {
+  z-index: 2;
 }
 
 .field-block {
@@ -454,6 +501,105 @@ button:disabled:hover {
 
 .field-block:has(button:disabled):hover {
   transform: none !important;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.custom-select.active {
+  z-index: 3;
+}
+
+.selected {
+  border: 1px solid #002b49;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: "Prompt", sans-serif;
+  color: #002b49;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 43, 73, 0.1);
+  position: relative;
+}
+
+.selected::after {
+  content: '▼';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #002b49;
+  border-radius: 5px;
+  margin-top: 5px;
+  box-shadow: 0 4px 8px rgba(0, 43, 73, 0.2);
+  z-index: 4;
+  max-height: 200px;
+  overflow-y: auto;
+  animation: dropdownFade 0.2s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.option {
+  padding: 10px;
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  background-color: rgba(0, 43, 73, 0.1);
+}
+
+.custom-select:focus-within .selected {
+  border-color: #004d80;
+  box-shadow: 0 4px 8px rgba(0, 43, 73, 0.2);
+}
+
+.custom-select.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.custom-select.disabled .selected {
+  background-color: #f5f5f5;
+}
+
+.custom-select.disabled:hover .selected {
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 43, 73, 0.1);
+}
+
+.dropdown::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 </style>

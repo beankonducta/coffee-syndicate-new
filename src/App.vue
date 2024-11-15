@@ -37,7 +37,7 @@
         class="no-mobile"
       ></div>
       <div id="scroll-progress-fill no-mobile"></div>
-      <div class="block" id="about">
+      <div class="block" id="about" ref="aboutBlock">
         <div class="inner-block-full">
           <h1 ref="about" id="about-header">ABOUT</h1>
           <p>
@@ -54,7 +54,7 @@
           <div class="spacer"></div>
         </div>
       </div>
-      <div class="block" id="equipment">
+      <div class="block" id="equipment" ref="equipmentBlock">
         <div class="inner-block">
           <h1 ref="equipment" id="equipment-header">EQUIPMENT</h1>
           <h2>ESPRESSO MACHINES, GRINDERS & BREWERS</h2>
@@ -87,7 +87,7 @@
           <!-- </div> -->
         </div>
       </div>
-      <div class="block" id="service">
+      <div class="block" id="service" ref="serviceBlock">
         <div class="inner-block">
           <h1 ref="service" id="service-header">SERVICE</h1>
           <h2>PREVENTATIVE PLANS</h2>
@@ -161,7 +161,7 @@
           </div>
         </div>
       </div>
-      <div class="block" id="contact">
+      <div class="block" id="contact" ref="contactBlock">
         <div class="inner-block-form">
           <h1 ref="contact" id="contact-header">CONTACT</h1>
           <p>
@@ -203,6 +203,7 @@ export default {
     }, 500);
     this.observeHeader();
     this.animateWater();
+    this.observeBlocks();
   },
   computed: {
     height() {
@@ -319,7 +320,6 @@ export default {
       observer.observe(this.$refs.about);
       observer.observe(this.$refs.equipment);
       observer.observe(this.$refs.service);
-      observer.observe(this.$refs.software);
       observer.observe(this.$refs.contact);
     },
     show(number) {
@@ -358,6 +358,49 @@ export default {
       if (Math.abs(diff) > 0.01) {
         requestAnimationFrame(this.animateWater);
       }
+    },
+    observeBlocks() {
+      const options = {
+        threshold: 0.2,
+        rootMargin: "0px"
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // console.log('Block entering viewport:', entry.target.id);
+            entry.target.classList.add('visible');
+          }
+        });
+      }, options);
+
+      // Use nextTick to ensure DOM is ready
+      this.$nextTick(() => {
+        const blocks = [
+          this.$refs.aboutBlock,
+          this.$refs.equipmentBlock,
+          this.$refs.serviceBlock,
+          this.$refs.contactBlock
+        ];
+        
+        // console.log('Found blocks:', blocks.filter(Boolean).length);
+        
+        blocks.forEach(block => {
+          if (block && block instanceof Element) {
+            // Remove any existing classes first
+            block.classList.remove('visible');
+            // Add initial state
+            block.style.opacity = '0';
+            block.style.transform = 'translateY(20px)';
+            try {
+              observer.observe(block);
+              // console.log('Successfully observing block:', block.id);
+            } catch (error) {
+              // console.error('Error observing block:', block.id, error);
+            }
+          }
+        });
+      });
     },
   },
   watch: {
@@ -414,6 +457,30 @@ h6 {
 a {
   color: #d15e14;
   text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #d15e14;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+a:hover {
+  color: #002b49;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 p {
@@ -508,6 +575,7 @@ p {
   height: 300px;
   top: 15px;
   left: calc(50% - 150px);
+  transition: opacity 0.3s ease-out;
 }
 
 #mark {
@@ -535,6 +603,15 @@ p {
   margin-top: 5%;
   margin-bottom: 5%;
   display: flex;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.block.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1300px) {
@@ -709,6 +786,7 @@ p {
   background: #002b49;
   z-index: 100;
   transition: height 0.5s ease;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
 }
 
 #water {
@@ -1128,5 +1206,58 @@ p {
   100% {
     transform: translateY(0px);
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Add progress fill animation */
+#scroll-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: #d15e14;
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+h1 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendar {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.calendar:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.block {
+  /* Remove opacity and transform from base class */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.block.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
