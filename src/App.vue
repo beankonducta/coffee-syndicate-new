@@ -165,7 +165,7 @@
         <div class="inner-block-form">
           <h1 ref="contact" id="contact-header">CONTACT</h1>
           <p>
-            If you need service or are interested in talking equipment packages,please contact us using this form.
+            If you need service or are interested in talking equipment packages, please contact us using this form.
             All inquiries will receive response within a business day.
           </p>
           <FormComponent />
