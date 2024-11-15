@@ -202,6 +202,7 @@ export default {
       }
     }, 500);
     this.observeHeader();
+    this.animateWater();
   },
   computed: {
     height() {
@@ -222,6 +223,7 @@ export default {
   data() {
     return {
       waterLeft: 0,
+      targetWaterLeft: 0,
       binary: [],
       showVal: 0,
       mousePos: {
@@ -349,10 +351,22 @@ export default {
         text: "",
       };
     },
+    animateWater() {
+      const diff = this.targetWaterLeft - this.waterLeft;
+      this.waterLeft += diff * 0.05;
+      
+      if (Math.abs(diff) > 0.01) {
+        requestAnimationFrame(this.animateWater);
+      }
+    },
   },
   watch: {
-    position(val) {
-      this.waterLeft = val[1] / 4;
+    position: {
+      handler(val) {
+        this.targetWaterLeft = val[1] / 4;
+        requestAnimationFrame(this.animateWater);
+      },
+      deep: true
     },
   },
 };
@@ -439,26 +453,55 @@ p {
 }
 
 .header-link {
+  font-family: "Manufaktur", sans-serif;
   font-size: calc(0.5rem + 0.5vw);
   color: white;
   cursor: pointer;
-  margin: 5px;
-  max-width: 200px;
-  width: auto;
+  padding: 12px 24px;
+  margin: 20px;
   text-align: center;
-  opacity: 100%;
-  font-family: "Prompt", sans-serif;
-  background: #002b49;
-  border-radius: 5px;
-  padding: 5px;
+  background: #d15e14;
+  border-radius: 3px;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 1000;
+  letter-spacing: 0.1em;
+  border: 2px solid #d15e14;
+  animation: pulse 3s infinite;
+  transition: all 0.3s ease;
 }
 
 .header-link:hover {
-  background: #d15e14;
+  background: transparent;
+  color: #d15e14;
+  transform: translateY(-2px);
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 0 rgba(209, 94, 20, 0.2);
+  }
+  
+  70% {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(209, 94, 20, 0.2);
+  }
+  
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 0 rgba(209, 94, 20, 0);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .header-link {
+    font-size: calc(0.6rem + 0.5vw);
+    padding: 8px 16px;
+    margin: 12px;
+  }
 }
 
 #header #logo {
@@ -570,13 +613,20 @@ p {
     padding: 0px;
   }
   h1 {
-    font-size: calc(1.2rem + 1vw);
+    font-size: calc(1.6rem + 1vw);
     color: #d15e14;
   }
   h2 {
-    font-size: calc(0.4rem + 1vw);
+    font-size: calc(0.7rem + 1vw);
     color: #d15e14;
     letter-spacing: 0.2em;
+  }
+  p {
+    font-size: calc(0.75rem + 0.5vw);
+    line-height: 1.6;
+  }
+  .header-link {
+    font-size: calc(0.75rem + 0.5vw);
   }
 }
 
