@@ -3,19 +3,25 @@
     <div class="header-link" @click="scrollTo('#contact')">REQUEST SERVICE</div>
     <div id="top"></div>
     <div id="header">
+      <div class="dot-pattern"></div>
       <img
         :class="position[1] > 500 ? 'hide' : ''"
         :src="require('./assets/Coffee Syndicate Logo Full.svg')"
         alt="Coffee Syndicate Logo"
         id="logo"
       />
+      <div class="wave-container">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+      </div>
     </div>
-    <img
+    <!-- <img
       src="./assets/bottom_water.svg"
       alt="water"
       id="water"
       :style="{ marginLeft: `calc(-90% + ${waterLeft}px)` }"
-    />
+    /> -->
     <div
       id="tooltip"
       :style="{ top: `${mousePos.y}px`, left: `${mousePos.x}px` }"
@@ -173,6 +179,11 @@
       </div>
     </div>
     <div id="footer">
+      <div class="footer-wave-container">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+      </div>
       <p>© {{ currentYear }} Coffee Syndicate</p>
     </div>
   </div>
@@ -189,6 +200,10 @@ export default {
     FormComponent,
   },
   mounted() {
+    document.fonts.ready.then(() => {
+      this.$el.classList.add('fonts-loaded');
+    });
+
     const rows = 5;
     const cols = 24;
     this.binary = new Array(rows)
@@ -500,14 +515,76 @@ p {
   background: #002b49;
   overflow-x: clip;
   min-height: 80vh;
+  transition: filter 1s ease;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  opacity: 0;
+}
+
+#app.fonts-loaded {
+  opacity: 1;
 }
 
 #header {
-  height: 400px;
+  height: 500px;
   display: flex;
   justify-content: space-between;
-  position: sticky;
+  position: relative;
+  overflow: visible;
+  padding-bottom: 0;
+  z-index: 3;
+}
+
+/* Create multiple decorative elements */
+#header::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.dot-pattern {
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+}
+
+#header #logo {
+  height: 300px;
+  top: 15px;
+  left: calc(50% - 150px);
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 3;
+}
+
+#header #logo:not(.hide) {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 20% 20%;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 #tooltip {
@@ -571,13 +648,6 @@ p {
   }
 }
 
-#header #logo {
-  height: 300px;
-  top: 15px;
-  left: calc(50% - 150px);
-  transition: opacity 0.3s ease-out;
-}
-
 #mark {
   height: 100px;
   position: fixed;
@@ -585,6 +655,19 @@ p {
   top: 15px;
   left: 15px;
   z-index: 100;
+  transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease;
+}
+
+#mark.hide {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(-20px);
+}
+
+#mark:not(.hide) {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
 }
 
 #mark:hover {
@@ -596,7 +679,8 @@ p {
   background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
   position: relative;
   overflow: hidden;
-  z-index: 99;
+  z-index: 1;
+  margin-top: -70px;
 }
 
 .block {
@@ -776,6 +860,9 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: visible;
+  z-index: 3;
 }
 
 #scroll-progress-container {
@@ -786,7 +873,6 @@ p {
   background: #002b49;
   z-index: 100;
   transition: height 0.5s ease;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
 }
 
 #water {
@@ -1259,5 +1345,50 @@ h1 {
 .block.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Add new wave-container styles */
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 2;
+}
+
+.wave-container svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 70px;
+}
+
+.wave-container .shape-fill {
+  fill: #002b49;
+}
+
+.footer-wave-container {
+  position: absolute;
+  bottom: 99px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 2;
+}
+
+.footer-wave-container svg {
+  transform: rotate(180deg);
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 70px;
+  z-index: 2;
+}
+
+.footer-wave-container .shape-fill {
+  fill: #002b49;
 }
 </style>

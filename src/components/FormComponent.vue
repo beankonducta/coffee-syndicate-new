@@ -266,8 +266,8 @@ export default {
   z-index: 1;
 }
 
-.form-block:hover {
-  z-index: 2;
+.form-block:has(.custom-select .dropdown) {
+  z-index: 100;
 }
 
 .field-block {
@@ -507,11 +507,6 @@ button:disabled:hover {
   position: relative;
   width: 100%;
   cursor: pointer;
-  z-index: 1;
-}
-
-.custom-select.active {
-  z-index: 3;
 }
 
 .selected {
@@ -546,7 +541,6 @@ button:disabled:hover {
   border-radius: 5px;
   margin-top: 5px;
   box-shadow: 0 4px 8px rgba(0, 43, 73, 0.2);
-  z-index: 4;
   max-height: 200px;
   overflow-y: auto;
   animation: dropdownFade 0.2s ease;
@@ -600,6 +594,47 @@ button:disabled:hover {
   bottom: 0;
   z-index: -1;
   pointer-events: none;
+}
+
+/* Add these new animation keyframes */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Add transition group styles */
+.form-block-transition-group {
+  position: relative;
+}
+
+.form-field-enter-active {
+  animation: slideDown 0.3s ease-out;
+}
+
+.form-field-leave-active {
+  animation: slideUp 0.3s ease-out;
+}
+
+.form-field-enter-from,
+.form-field-leave-to {
+  opacity: 0;
 }
 
 </style>
