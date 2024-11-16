@@ -66,9 +66,8 @@
           <h2>ESPRESSO MACHINES, GRINDERS & BREWERS</h2>
           <p>
             Explore our selection of espresso machines, grinders, and brewers
-            from renowned brands such as <a v-for="brand of brands" :key="brand.name" :href="brand.href" target="_blank">{{ brand.name }}, </a> and more. Enjoy free delivery from
-            our warehouse and complimentary installation with our full equipment
-            packages.
+            from renowned brands such as <a v-for="brand of brands" :key="brand.name" :href="brand.href" target="_blank">{{ brand.name }}, </a> and more. All equipment purchased
+            from us includes free delivery from our warehouse and complimentary installation.
             <br /><br />
             Additionally, we offer fully rebuilt and cleaned used equipment,
             complete with an in-house warranty on parts and labor.
@@ -184,11 +183,18 @@
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
         </svg>
       </div>
-      <p>© {{ currentYear }} Coffee Syndicate</p>
+      <div class="footer-content">
+        <p>© {{ currentYear }} Coffee Syndicate</p>
+        <a href="mailto:admin@coffeesyn.com" class="social-link">
+          <i class="far fa-envelope"></i>
+        </a>
+        <a href="https://www.instagram.com/coffeesyn" target="_blank" class="social-link">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
 import windowScrollPosition from "./window-scroll-position";
 import FormComponent from "./components/FormComponent.vue";
@@ -562,10 +568,6 @@ p {
   z-index: 3;
 }
 
-#header #logo:not(.hide) {
-  animation: float 6s ease-in-out infinite;
-}
-
 @keyframes shimmer {
   0% {
     background-position: 0% 0%;
@@ -758,6 +760,7 @@ p {
     width: 100%;
     margin-left: 0%;
     border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   #software-img {
     width: 100%;
@@ -768,10 +771,12 @@ p {
     width: 100%;
     left: 0%;
     border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   .calendar {
     width: 10%;
     padding: 0px;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
   }
   h1 {
     font-size: calc(1.6rem + 1vw);
@@ -813,6 +818,7 @@ p {
     width: 100%;
     margin-left: 45%;
     border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   #software-img {
     width: 100%;
@@ -824,10 +830,12 @@ p {
     left: 45%;
     border-radius: 5px;
     position: absolute;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   .calendar {
     width: 15%;
     padding: 20px;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
   }
   h1 {
     font-size: calc(1rem + 1vw);
@@ -863,6 +871,23 @@ p {
   position: relative;
   overflow: visible;
   z-index: 3;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.social-link {
+  color: white;
+  font-size: 24px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  color: #d15e14;
 }
 
 #scroll-progress-container {
@@ -1314,10 +1339,26 @@ p {
 
 h1 {
   position: relative;
-  overflow: hidden;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: fadeInUp 0.8s ease forwards;
+  font-size: calc(1rem + 1vw);
+  color: #d15e14;
+  display: inline-block;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  width: 110%;
+  height: 2px;
+  bottom: -1px;
+  left: 0;
+  background-color: #d15e14;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.8s ease-out;
+}
+
+.block.visible h1::after {
+  transform: scaleX(1);
 }
 
 @keyframes fadeInUp {
@@ -1392,3 +1433,4 @@ h1 {
   fill: #002b49;
 }
 </style>
+
